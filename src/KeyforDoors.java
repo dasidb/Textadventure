@@ -1,4 +1,4 @@
-public class Key {
+public class KeyforDoors {
     int keyID;
 
     public int getKeyID() {
@@ -6,6 +6,9 @@ public class Key {
     }
 
     public void setKeyID(int keyID) {
+        this.keyID = keyID;
+    }
+    public KeyforDoors(int keyID){
         this.keyID = keyID;
     }
 }

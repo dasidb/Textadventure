@@ -13,10 +13,22 @@ public class GameMap {
         createGameMap();
     }
 
+    public Map<PVector, Room> getWorldMap() {
+        return worldMap;
+    }
+
+    public void setWorldMap(Map<PVector, Room> worldMap) {
+        this.worldMap = worldMap;
+    }
+
     public void createGameMap(){
         for(int y = 0; y < 5; y++){
             for(int x = 0; x < 5; x++){
                 PVector pVector = new PVector(x,y);
+                if(y ==1 && x ==0) {
+                    worldMap.put(pVector, new MoneyRoom(pVector, "TestRaun", false, false, true, false, new KeyforDoors(1)));
+                }else
+
                 worldMap.put(pVector, new MoneyRoom(pVector,"TestRaun",false,false,true,false));
 
 

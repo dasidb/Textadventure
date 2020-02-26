@@ -36,9 +36,10 @@ public class Game extends PApplet {
     public void setup() {
         super.setup();
         fillImageMap();
-        chooseMenu = new ChooseMenu(this);
+
         character = new Character(new PVector(0,0));
         gameMap = new GameMap(this);
+        chooseMenu = new ChooseMenu(this,character,gameMap);
 
 
 
@@ -67,18 +68,21 @@ public class Game extends PApplet {
 
         if(keyPressed){
 
-            chooseMenu.setInputValue(chooseMenu.inputValue + key);
+            if(keyCode !=  SHIFT || key != BACKSPACE) {
 
-            if(key == BACKSPACE && canPress > 30){
+                chooseMenu.setInputValue(chooseMenu.inputValue + key);
+            }
+
+            if((key == BACKSPACE && canPress > 30) && chooseMenu.getInputValue().length() >1){
                 chooseMenu.setInputValue(chooseMenu.getInputValue().substring(0,chooseMenu.getInputValue().length() - 2));
-             //   clear();
+
 
 
             }
             if(key == ENTER){
                 chooseMenu.chooseOption(chooseMenu.inputValue);
                 chooseMenu.setInputValue("");
-                //clear();
+
             }
             if(key == 'w'){
 

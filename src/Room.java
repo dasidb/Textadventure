@@ -1,8 +1,5 @@
-import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
-
-import java.util.ArrayList;
 
 public abstract class Room {
     PVector mapCoordinates;
@@ -13,6 +10,8 @@ public abstract class Room {
     boolean exitWest;
     boolean hasCharacter = false;
     PImage img;
+    KeyforDoors keyforDoors;
+    Door door;
 
     public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest) {
         this.mapCoordinates = mapCoordinates;
@@ -21,6 +20,37 @@ public abstract class Room {
         this.exitEast = exitEast;
         this.exitSouth = exitSouth;
         this.exitWest = exitWest;
+
+    }
+    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, KeyforDoors keyforDoors) {
+        this.mapCoordinates = mapCoordinates;
+        this.roomName = roomName;
+        this.exitNorth = exitNorth;
+        this.exitEast = exitEast;
+        this.exitSouth = exitSouth;
+        this.exitWest = exitWest;
+        this.keyforDoors = keyforDoors;
+
+    }
+    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, KeyforDoors keyforDoors, Door door) {
+        this.mapCoordinates = mapCoordinates;
+        this.roomName = roomName;
+        this.exitNorth = exitNorth;
+        this.exitEast = exitEast;
+        this.exitSouth = exitSouth;
+        this.exitWest = exitWest;
+        this.keyforDoors = keyforDoors;
+        this.door = door;
+
+    }
+    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, Door door) {
+        this.mapCoordinates = mapCoordinates;
+        this.roomName = roomName;
+        this.exitNorth = exitNorth;
+        this.exitEast = exitEast;
+        this.exitSouth = exitSouth;
+        this.exitWest = exitWest;
+        this.door = door;
 
     }
     public Room(){

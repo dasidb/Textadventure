@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class ChooseMenu {
     PApplet pApplet;
@@ -7,9 +8,13 @@ public class ChooseMenu {
     String choice3 = "Move Left";
     String choice4 = "Move Right";
     String inputValue = "";
+    Character character;
+    GameMap gameMap;
 
-    public ChooseMenu(PApplet pApplet){
+    public ChooseMenu(PApplet pApplet, Character character, GameMap gameMap){
         this.pApplet = pApplet;
+        this.character = character;
+        this.gameMap = gameMap;
     }
 
     public String getInputValue() {
@@ -36,16 +41,26 @@ public class ChooseMenu {
     }
     public void chooseOption(String choiceSelected){
         String userchoice = choiceSelected.toLowerCase();
+        userchoice = userchoice.replace("\n", "");
         switch(userchoice) {
             case "move up":
                 //mache das
+                character.moveCharacter(new PVector(0,-1));
                 break;
             case "move down":
-                //mache das
+                character.moveCharacter(new PVector(0,1));
                 break;
             case "move left":
+                character.moveCharacter(new PVector(-1,0));
                 break;
             case "move right":
+                character.moveCharacter(new PVector(1,0));
+                break;
+            case "search":
+                System.out.println("test");
+                character.getKeyList().add(gameMap.getWorldMap().get(character.position).keyforDoors);
+                System.out.println(gameMap.getWorldMap().get(character.position).keyforDoors);
+                System.out.println(character.getKeyList().size());
                 break;
         }
 
