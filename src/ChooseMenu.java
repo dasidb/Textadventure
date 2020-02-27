@@ -42,19 +42,41 @@ public class ChooseMenu {
     public void chooseOption(String choiceSelected){
         String userchoice = choiceSelected.toLowerCase();
         userchoice = userchoice.replace("\n", "");
+        PVector tmpVec = new PVector();
         switch(userchoice) {
             case "move up":
                 //mache das
-                character.moveCharacter(new PVector(0,-1));
+                tmpVec.x = 0;
+                tmpVec.y = -1;
+
+                if(!gameMap.getWorldMap().get(character.getPosition()).exitNorth)
+                    break;
+
+                character.moveCharacter(tmpVec);
                 break;
             case "move down":
-                character.moveCharacter(new PVector(0,1));
+                tmpVec.x = 0;
+                tmpVec.y = 1;
+                System.out.println(character.getPosition());
+                if(!gameMap.getWorldMap().get(character.getPosition()).exitSouth)
+                    break;
+
+                character.moveCharacter(tmpVec);
                 break;
             case "move left":
-                character.moveCharacter(new PVector(-1,0));
+                tmpVec.x = -1;
+                tmpVec.y = 0;
+
+                if(!gameMap.getWorldMap().get(character.getPosition()).exitWest)
+                    break;
+                character.moveCharacter(tmpVec);
                 break;
             case "move right":
-                character.moveCharacter(new PVector(1,0));
+                tmpVec.x = 1;
+                tmpVec.y = 0;
+                if(!gameMap.getWorldMap().get(character.getPosition()).exitEast)
+                    break;
+                character.moveCharacter(tmpVec);
                 break;
             case "search":
                 System.out.println("test");

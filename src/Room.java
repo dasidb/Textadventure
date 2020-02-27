@@ -12,6 +12,7 @@ public abstract class Room {
     PImage img;
     KeyforDoors keyforDoors;
     Door door;
+    boolean hasenteredYet = false;
 
     public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest) {
         this.mapCoordinates = mapCoordinates;
@@ -55,6 +56,14 @@ public abstract class Room {
     }
     public Room(){
 
+    }
+
+    public boolean isHasenteredYet() {
+        return hasenteredYet;
+    }
+
+    public void setHasenteredYet(boolean hasenteredYet) {
+        this.hasenteredYet = hasenteredYet;
     }
 
     public PVector getMapCoordinates() {

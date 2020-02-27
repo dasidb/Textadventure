@@ -53,6 +53,7 @@ public class Game extends PApplet {
     gameMap.drawGameMap(character.position);
     chooseMenu.drawChoices();
     canPress += 1;
+    //checkCharactertoRoom();
     }
 
     public void fillImageMap(){
@@ -60,6 +61,8 @@ public class Game extends PApplet {
          img = new PImage();
             img =    loadImage("Assets/BathroomImage.png");
         imageMap.put("bathroom",img);
+        img =    loadImage("Assets/unknownRoomImage.png");
+        imageMap.put("unknownRoom",img);
     }
 
     @Override
@@ -95,6 +98,8 @@ public class Game extends PApplet {
         }
 
     }
+
+
 
     @Override
     public void keyReleased() {
