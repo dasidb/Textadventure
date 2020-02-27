@@ -60,7 +60,7 @@ public class ChooseMenu {
                 System.out.println(character.getPosition());
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitSouth)
                     break;
-
+//
                 character.moveCharacter(tmpVec);
                 break;
             case "move left":
