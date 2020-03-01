@@ -14,6 +14,7 @@ public class Game extends PApplet {
     Character character;
     ChooseMenu chooseMenu;
     int canPress = 0;
+    int canPress1;
 
 
 
