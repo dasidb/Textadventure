@@ -37,7 +37,7 @@ public class GameMap {
         }
     }
 
-    public void createManualGameMap(){
+  /*  public void createManualGameMap(){
         PVector tmpVec = new PVector(0,0);
     // 0 ROW
         tmpVec = new PVector(0,0);
@@ -135,7 +135,18 @@ public class GameMap {
         worldMap.put(tmpVec, new MoneyRoom(tmpVec,"TestRaum",false,false,false,true));
 
 
-    }
+    } */
+
+  public void createManualGameMap1(){
+      PVector tmpvec = new PVector();
+      tmpvec = new PVector(10,10);
+      // first room game starts here its youre home and you will have a short intro here
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,true,false,false));
+      tmpvec = new PVector(11,10);
+      //second room, here you meet 1 to 3 persons, they will drop somehow an item
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",true,true,true,true));
+
+  }
 
     public void render(PVector characterPosi){
         drawGameMap(characterPosi);
