@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
+import processing.event.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,6 +16,7 @@ public class Game extends PApplet {
     ChooseMenu chooseMenu;
     int canPress = 0;
     int canPress1;
+    GameManager gameManager;
 
 
 
@@ -37,10 +39,12 @@ public class Game extends PApplet {
     public void setup() {
         super.setup();
         fillImageMap();
-
-        character = new Character(new PVector(0,0));
-        gameMap = new GameMap(this);
-        chooseMenu = new ChooseMenu(this,character,gameMap);
+        gameManager = new GameManager();
+        final PlayGameState playGameState = new PlayGameState(this,gameManager);
+        gameManager.setCurrentGameState(playGameState);
+        //character = new Character(new PVector(0,0));
+       // gameMap = new GameMap(this);
+       // chooseMenu = new ChooseMenu(this,character,gameMap);
 
 
 
@@ -51,9 +55,11 @@ public class Game extends PApplet {
 
     @Override
     public void draw(){
-    gameMap.drawGameMap(character.position);
-    chooseMenu.drawChoices();
-    canPress += 1;
+        gameManager.update();
+        gameManager.render(this);
+  //  gameMap.drawGameMap(character.position);
+    //chooseMenu.drawChoices();
+    //canPress += 1;
     //checkCharactertoRoom();
     }
 
@@ -67,43 +73,17 @@ public class Game extends PApplet {
     }
 
     @Override
-    public void keyPressed() {
-        super.keyPressed();
-
-        if(keyPressed){
-
-            if(keyCode !=  SHIFT || key != BACKSPACE) {
-
-                chooseMenu.setInputValue(chooseMenu.inputValue + key);
-            }
-
-            if((key == BACKSPACE && canPress > 30) && chooseMenu.getInputValue().length() >1){
-                chooseMenu.setInputValue(chooseMenu.getInputValue().substring(0,chooseMenu.getInputValue().length() - 2));
+    public void keyPressed(KeyEvent event) {
+        gameManager.keyPressed(event);
 
 
-
-            }
-            if(key == ENTER){
-                chooseMenu.chooseOption(chooseMenu.inputValue);
-                chooseMenu.setInputValue("");
-
-            }
-            if(key == 'w'){
-
-            }
-
-            if(key == 's'){
-
-            }
-
-        }
 
     }
 
 
 
     @Override
-    public void keyReleased() {
-        super.keyReleased();
+    public void keyReleased(KeyEvent event) {
+        gameManager.keyReleased(event);
     }
 }

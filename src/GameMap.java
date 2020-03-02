@@ -137,6 +137,10 @@ public class GameMap {
 
     }
 
+    public void render(PVector characterPosi){
+        drawGameMap(characterPosi);
+    }
+
     public void drawGameMap(PVector characterPosi){
         for(Map.Entry<PVector,Room> entry : worldMap.entrySet()){
             if(entry.getValue().hasenteredYet)

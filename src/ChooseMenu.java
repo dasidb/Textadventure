@@ -25,6 +25,10 @@ public class ChooseMenu {
         this.inputValue = inputValue;
     }
 
+
+    public void render(){
+        drawChoices();
+    }
     public void drawChoices(){
         pApplet.textSize(16);
 
