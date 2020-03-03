@@ -13,6 +13,8 @@ public abstract class Room {
     KeyforDoors keyforDoors;
     Door door;
     boolean hasenteredYet = false;
+    int roomID;
+    int storyID;
 
     public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest) {
         this.mapCoordinates = mapCoordinates;

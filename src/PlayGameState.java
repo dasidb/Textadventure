@@ -13,6 +13,7 @@ public class PlayGameState extends GameState {
     GameMap gameMap;
     Character character;
     ChooseMenu chooseMenu;
+    Story story;
 
 
     public PlayGameState(PApplet pApplet, GameManager gameManager){
@@ -26,6 +27,7 @@ public class PlayGameState extends GameState {
         gameMap = new GameMap(getProcessing());
         character = new Character(new PVector(0,0));
         chooseMenu = new ChooseMenu(getProcessing(),character,gameMap);
+        story = new Story();
 
 
 
@@ -41,7 +43,9 @@ public class PlayGameState extends GameState {
         // renders the objects displays text etc
         gameMap.render(character.position);
         chooseMenu.render();
-        chooseMenu.render();
+        story.render(getProcessing());
+        //chooseMenu.render();
+
 
     }
 

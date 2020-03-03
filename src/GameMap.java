@@ -11,7 +11,8 @@ public class GameMap {
     public GameMap(PApplet pApplet){
         this.pApplet = pApplet;
         //createGameMap();
-        createManualGameMap();
+        //createManualGameMap();
+        createManualGameMap1();
     }
 
     public Map<PVector, Room> getWorldMap() {
@@ -138,33 +139,58 @@ public class GameMap {
     } */
 
   public void createManualGameMap1(){
-      PVector tmpvec = new PVector();
-      tmpvec = new PVector(10,10);
-      // first room game starts here its youre home and you will have a short intro here
+      PVector tmpvec;
+
+      //1. first room game starts here its youre home and you will have a short intro here
+      tmpvec = new PVector(1,4);
       worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,true,false,false));
-      tmpvec = new PVector(11,10);
-      //second room, here you meet 1 to 3 persons, they will drop somehow an item
+      //tmpvec = new PVector(11,10);
+
+
+      //2. second room, here you meet 1 to 3 persons, they will drop somehow an item
+      tmpvec = new PVector(2,4);
       worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",true,true,true,true));
 
+      //3.  Third room has an Interaction with an item of the 2. Room let you continue to room 5.
+      tmpvec = new PVector(2,5);
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",true,true,false,false));
+
+      //4. fourth room just some story room may continue a riddle
+      tmpvec = new PVector(2,3);
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,false,true,false));
+
+      //5. fivt room gets opened through a item from the 3. Room has some item
+      tmpvec = new PVector(3,5);
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,false,false,true));
+
+      //6. sixt room
+      tmpvec = new PVector(3,4);
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,true,false,true));
+
+      //7. Seventh room
+      tmpvec = new PVector(4,4);
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,true,false,true));
   }
 
     public void render(PVector characterPosi){
         drawGameMap(characterPosi);
+        System.out.println(worldMap.size());
     }
 
     public void drawGameMap(PVector characterPosi){
+      int displayFactor = 100;
         for(Map.Entry<PVector,Room> entry : worldMap.entrySet()){
             if(entry.getValue().hasenteredYet)
-            pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * 100), 100 + (entry.getValue().mapCoordinates.y * 100));
+            pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
             else
-                pApplet.image(Game.getImageMap().get("unknownRoom"), (entry.getValue().mapCoordinates.x * 100), 100 + (entry.getValue().mapCoordinates.y * 100));
-                System.out.println(worldMap.get(new PVector(0,0)));
+                pApplet.image(Game.getImageMap().get("unknownRoom"), (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
+
             if(characterPosi.x == entry.getValue().mapCoordinates.x && characterPosi.y == entry.getValue().mapCoordinates.y) {
 
                 entry.getValue().setHasenteredYet(true);
-                pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * 100), 100 + (entry.getValue().mapCoordinates.y * 100));
+                pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
                 pApplet.fill(255,30,55,150);
-                pApplet.rect( (characterPosi.x * 100), 100 + (characterPosi.y * 100) ,100,100);
+                pApplet.rect( (characterPosi.x * displayFactor), displayFactor + (characterPosi.y * displayFactor) ,displayFactor,displayFactor);
 
             }
 
