@@ -2,9 +2,12 @@ import processing.core.PApplet;
 import processing.event.KeyEvent;
 import processing.event.MouseEvent;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class GameManager {
     GameState currentGameState;
-
+    Map<String, GameState> gameStateMap = new HashMap();
     public GameManager(){
     }
 
@@ -29,5 +32,15 @@ public class GameManager {
         currentGameState = state;
     }
 
+    public Map<String, GameState> getGameStateMap() {
+        return gameStateMap;
+    }
 
+    public void setGameStateMap(Map<String, GameState> gameStateMap) {
+        this.gameStateMap = gameStateMap;
+    }
+
+    public GameState getCurrentGameState(){
+        return currentGameState;
+    }
 }

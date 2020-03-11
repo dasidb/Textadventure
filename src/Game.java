@@ -41,6 +41,7 @@ public class Game extends PApplet {
         fillImageMap();
         gameManager = new GameManager();
         final PlayGameState playGameState = new PlayGameState(this,gameManager);
+        gameManager.getGameStateMap().put("playgamestate", playGameState);
         gameManager.setCurrentGameState(playGameState);
         //character = new Character(new PVector(0,0));
        // gameMap = new GameMap(this);

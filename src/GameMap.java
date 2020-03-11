@@ -169,7 +169,7 @@ public class GameMap {
 
       //7. Seventh room
       tmpvec = new PVector(4,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,true,false,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,false,false,true));
   }
 
     public void render(PVector characterPosi){

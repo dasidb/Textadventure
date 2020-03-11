@@ -25,7 +25,7 @@ public class PlayGameState extends GameState {
         super.init();
         // holds the Arraylist and Objects
         gameMap = new GameMap(getProcessing());
-        character = new Character(new PVector(0,0));
+        character = new Character(new PVector(1,4));
         chooseMenu = new ChooseMenu(getProcessing(),character,gameMap);
         story = new Story();
 
@@ -43,7 +43,8 @@ public class PlayGameState extends GameState {
         // renders the objects displays text etc
         gameMap.render(character.position);
         chooseMenu.render();
-        story.render(getProcessing());
+       // story.render(getProcessing());
+
         //chooseMenu.render();
 
 
@@ -85,8 +86,30 @@ public class PlayGameState extends GameState {
 
 
             }
+
+            //Currently bad designed should split it into different methods
             if(key == PApplet.ENTER){
                 chooseMenu.chooseOption(chooseMenu.inputValue);
+                if(!gameMap.getWorldMap().get(character.position).hasenteredYet) {
+                    if (gameManager.getGameStateMap().containsKey("storygamestate")) {
+                        try {
+// TODO: 09.03.2020 seems so be a cast exception i try to change it i need to assign the new first
+                            ((StoryGameState) gameManager.getCurrentGameState()).getStory().readStoryFromFile(gameMap.getWorldMap()
+                                    .get(character.getPosition()).roomID, gameMap.getWorldMap().get(character.getPosition()).storyID);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storygamestate"));
+
+
+                    } else {
+                        System.out.println("dwadwakdwakpokdwapokdwapokdwak");
+
+                        gameManager.getGameStateMap().put("storygamestate",new StoryGameState(getProcessing(),
+                                gameManager, gameMap.getWorldMap().get(character.getPosition()).getRoomAndStoryString()));
+                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storygamestate"));
+                    }
+                }
                 chooseMenu.setInputValue("");
 
             }

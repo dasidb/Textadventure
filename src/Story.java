@@ -5,10 +5,12 @@ import java.util.Properties;
 
 public class Story {
 
-    String storyText = "";
+    String storyText = "kfewafflkmfwflkmfelkmflkmfewlkmfewlkmfewlkmfewlkmlkmfewlkmfewlkmfewlkm";
     InputStream inputStream;
     String delayedStory = "";
-
+    int counter = 0;
+    int storyStringLength = 0;
+    boolean storyPartFinished = false;
 
     // Sets the story String for the Story class
     public void readStoryFromFile(int roomID, int storyCount) throws IOException {
@@ -36,17 +38,30 @@ public class Story {
     }
 
     public void render(PApplet pApplet){
-        pApplet.text(storyText,50,50);
-        delayStoryDraw();
+
+        //pApplet.clear();
+        pApplet.text(delayedStory,50,50);
+        if(counter > 1) {
+            delayStoryDraw();
+            counter = 0;
+        }
+        counter ++;
 
     }
 
     // Delays the draw of the story text so that it isnt displayed instantly
     public void delayStoryDraw() {
+        int z = 0;
         if (!delayedStory.equals(storyText)) {
-            for (int i = 0; i < storyText.length(); i++) {
-                delayedStory = storyText.substring(0, i);
+
+
+                    delayedStory = storyText.substring(0, storyStringLength);
+                    storyStringLength ++;
+                }else
+        storyPartFinished = true;
             }
+
+
         }
-    }
-}
+
+
