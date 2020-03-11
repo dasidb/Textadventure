@@ -17,8 +17,8 @@ public class Story {
         String propValue = "[" + roomID + "]" + "[" + storyCount + "]";
         try {
             Properties properties = new Properties();
-            String propertieFieName = "story.properties";
-            inputStream = getClass().getClassLoader().getResourceAsStream(propertieFieName);
+            String propertieFieName = "Assets/story.properties";
+            inputStream = new FileInputStream("C:\\Users\\Lukas\\IdeaProjects\\Textadventure\\Assets\\story");
 
 
             if (inputStream != null) {
@@ -28,6 +28,7 @@ public class Story {
 
             }
             storyText = properties.getProperty(propValue);
+           storyStringLength = 0;
 
 
         } catch (Exception e) {
@@ -40,7 +41,10 @@ public class Story {
     public void render(PApplet pApplet){
 
         //pApplet.clear();
-        pApplet.text(delayedStory,50,50);
+        pApplet.fill(0,0,0);
+        pApplet.rect(50,50,500,350);
+        pApplet.fill(255,255,255);
+        pApplet.text(delayedStory,50,50,500,500);
         if(counter > 1) {
             delayStoryDraw();
             counter = 0;
