@@ -93,7 +93,7 @@ public class PlayGameState extends GameState {
                 if(!gameMap.getWorldMap().get(character.position).hasenteredYet) {
                     if (gameManager.getGameStateMap().containsKey("storygamestate")) {
                         try {
-// TODO: 09.03.2020 seems so be a cast exception i try to change it i need to assign the new first
+// TODO: 09.03.2020 seems so be a cast exception i try to change it i need to assign the new first //
                             ((StoryGameState) gameManager.getCurrentGameState()).getStory().readStoryFromFile(gameMap.getWorldMap()
                                     .get(character.getPosition()).roomID, gameMap.getWorldMap().get(character.getPosition()).storyID);
                         } catch (Exception e) {
