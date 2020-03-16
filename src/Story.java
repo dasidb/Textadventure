@@ -12,13 +12,17 @@ public class Story {
     int storyStringLength = 0;
     boolean storyPartFinished = false;
 
+    public Story(){
+
+    }
+
     // Sets the story String for the Story class
     public void readStoryFromFile(int roomID, int storyCount) throws IOException {
         String propValue = "[" + roomID + "]" + "[" + storyCount + "]";
         try {
             Properties properties = new Properties();
             String propertieFieName = "Assets/story.properties";
-            inputStream = new FileInputStream("C:\\Users\\Lukas\\IdeaProjects\\Textadventure\\Assets\\story");
+            inputStream = new FileInputStream("C:\\Users\\Lukas.kapust\\IdeaProjects\\Textadventure\\Assets\\story");
 
 
             if (inputStream != null) {

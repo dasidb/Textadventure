@@ -2,8 +2,20 @@
 [0][0] = "hier steht die aller erste story vom 1. Raum"
 [0][1] = "Hier steht die zweite Story vom 1. Raum"
 
-[1][0] = "Hier steht die aller erste story vom 2. Raum"
-[1][1] = "Hier steht die zweite Story vom 2. Raum."
+[1][0] = "hier steht die aller erste story vom 2. Raum"
+[1][1] = "Hier steht die zweite Story vom 2. Raum"
 
-[5][0] = "Hier steht die erste Story vom 5. Raum."
-[5][1] = "Hier steht die zweite Story vom 5. Raum."
+[2][0] = "hier steht die aller erste story vom 3. Raum"
+[2][1] = "Hier steht die zweite Story vom 3. Raum"
+
+[3][0] = "hier steht die aller erste story vom 4. Raum"
+[3][1] = "Hier steht die zweite Story vom 4. Raum"
+
+[4][0] = "hier steht die aller erste story vom 5. Raum"
+[4][1] = "Hier steht die zweite Story vom 5. Raum"
+
+[5][0] = "Hier steht die aller erste story vom 6. Raum"
+[5][1] = "Hier steht die zweite Story vom 6. Raum."
+
+[6][0] = "Hier steht die erste Story vom 7. Raum."
+[6][1] = "Hier steht die zweite Story vom 7. Raum."

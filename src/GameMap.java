@@ -180,14 +180,14 @@ public class GameMap {
     public void drawGameMap(PVector characterPosi){
       int displayFactor = 100;
         for(Map.Entry<PVector,Room> entry : worldMap.entrySet()){
-            if(entry.getValue().hasenteredYet)
+            if(entry.getValue().hasNewStory)
             pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
             else
                 pApplet.image(Game.getImageMap().get("unknownRoom"), (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
 
             if(characterPosi.x == entry.getValue().mapCoordinates.x && characterPosi.y == entry.getValue().mapCoordinates.y) {
 
-                entry.getValue().setHasenteredYet(true);
+
                 pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
                 pApplet.fill(255,30,55,150);
                 pApplet.rect( (characterPosi.x * displayFactor), displayFactor + (characterPosi.y * displayFactor) ,displayFactor,displayFactor);

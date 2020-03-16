@@ -10,6 +10,10 @@ public class StoryGameState extends GameState {
         super(pApplet,gameManager);
         this.currentStory = currentStory;
     }
+    public StoryGameState(PApplet pApplet, GameManager gameManager){
+        super(pApplet,gameManager);
+
+    }
 
     @Override
     public void init() {
@@ -32,8 +36,12 @@ public class StoryGameState extends GameState {
     @Override
     public void keyPressed(KeyEvent event) {
         super.keyPressed(event);
+
+
         if(story.storyPartFinished && pApplet.key == pApplet.ENTER){
-        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("playgamestate"));
+
+        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("playGameState"));
+
         }
     }
 

@@ -12,7 +12,7 @@ public abstract class Room {
     PImage img;
     KeyforDoors keyforDoors;
     Door door;
-    boolean hasenteredYet = false;
+    boolean hasNewStory = true;
     static int roomCount = 0;
     final int roomID;
     int storyID = 0;
@@ -87,6 +87,13 @@ public abstract class Room {
 
     }
 
+    public boolean isHasNewStory() {
+        return hasNewStory;
+    }
+
+    public void setHasNewStory(boolean hasNewStory) {
+        this.hasNewStory = hasNewStory;
+    }
 
     public static int getRoomCount() {
         return roomCount;
@@ -102,12 +109,9 @@ public abstract class Room {
     }
 
     public boolean isHasenteredYet() {
-        return hasenteredYet;
+        return hasNewStory;
     }
 
-    public void setHasenteredYet(boolean hasenteredYet) {
-        this.hasenteredYet = hasenteredYet;
-    }
 
     public PVector getMapCoordinates() {
         return mapCoordinates;

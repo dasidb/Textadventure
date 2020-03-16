@@ -18,6 +18,7 @@ public class PlayGameState extends GameState {
 
     public PlayGameState(PApplet pApplet, GameManager gameManager){
         super(pApplet,gameManager);
+        pApplet.clear();
     }
 
     @Override
@@ -27,7 +28,7 @@ public class PlayGameState extends GameState {
         gameMap = new GameMap(getProcessing());
         character = new Character(new PVector(1,4));
         chooseMenu = new ChooseMenu(getProcessing(),character,gameMap);
-        story = new Story();
+        //story = new Story();
 
 
 
@@ -35,7 +36,8 @@ public class PlayGameState extends GameState {
 
     @Override
     protected void doUpdate(long tpf) {
-        // has the Game Logic for updating
+
+    checkForNewStory();
     }
 
     @Override
@@ -90,27 +92,27 @@ public class PlayGameState extends GameState {
             //Currently bad designed should split it into different methods
             if(key == PApplet.ENTER){
                 chooseMenu.chooseOption(chooseMenu.inputValue);
-                if(!gameMap.getWorldMap().get(character.position).hasenteredYet) {
-                    if (gameManager.getGameStateMap().containsKey("storygamestate")) {
+        /*        if(!gameMap.getWorldMap().get(character.position).hasNewStory) {
+                    if (gameManager.getGameStateMap().containsKey("storyGameState")) {
                         try {
-// TODO: 09.03.2020 seems so be a cast exception i try to change it i need to assign the new first //
-                            gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storygamestate"));
+
+                            gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));
                             ((StoryGameState) gameManager.getCurrentGameState()).getStory().readStoryFromFile(gameMap.getWorldMap()
                                     .get(character.getPosition()).roomID, gameMap.getWorldMap().get(character.getPosition()).storyID);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
-                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storygamestate"));
+                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));
 
 
                     } else {
-                        System.out.println("dwadwakdwakpokdwapokdwapokdwak");
 
-                        gameManager.getGameStateMap().put("storygamestate",new StoryGameState(getProcessing(),
+
+                        gameManager.getGameStateMap().put("storyGameState",new StoryGameState(getProcessing(),
                                 gameManager, gameMap.getWorldMap().get(character.getPosition()).getRoomAndStoryString()));
-                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storygamestate"));
+                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));
                     }
-                }
+                } */
                 chooseMenu.setInputValue("");
 
             }
@@ -125,6 +127,27 @@ public class PlayGameState extends GameState {
         }
     }
 
+
+    public void checkForNewStory(){
+        System.out.println(gameMap.worldMap.get(character.getPosition()).hasNewStory + " das ist new story");
+        if(gameMap.worldMap.get(character.getPosition()).hasNewStory){
+            if (gameManager.getGameStateMap().containsKey("storyGameState")) {
+                gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));
+            }
+            else {
+                StoryGameState storyGameState = new StoryGameState(getProcessing(), gameManager);
+                gameManager.getGameStateMap().put("storyGameState",storyGameState);
+                gameManager.setCurrentGameState(storyGameState);
+            }
+            try {
+                ((StoryGameState) gameManager.getCurrentGameState()).getStory().readStoryFromFile(gameMap.getWorldMap()
+                        .get(character.getPosition()).roomID, gameMap.getWorldMap().get(character.getPosition()).storyID);
+                gameMap.getWorldMap().get(character.getPosition()).setHasNewStory(false);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 

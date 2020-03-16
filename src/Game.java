@@ -40,9 +40,16 @@ public class Game extends PApplet {
         super.setup();
         fillImageMap();
         gameManager = new GameManager();
-        final PlayGameState playGameState = new PlayGameState(this,gameManager);
+
+       /* final PlayGameState playGameState = new PlayGameState(this,gameManager);
         gameManager.getGameStateMap().put("playgamestate", playGameState);
         gameManager.setCurrentGameState(playGameState);
+
+        */
+       final MenuGameState menuGameState = new MenuGameState(this,gameManager);
+       gameManager.getGameStateMap().put("menuGameState",menuGameState);
+       gameManager.setCurrentGameState(menuGameState);
+
         //character = new Character(new PVector(0,0));
        // gameMap = new GameMap(this);
        // chooseMenu = new ChooseMenu(this,character,gameMap);
