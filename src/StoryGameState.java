@@ -41,6 +41,7 @@ public class StoryGameState extends GameState {
         if(story.storyPartFinished && pApplet.key == pApplet.ENTER){
 
         gameManager.setCurrentGameState(gameManager.getGameStateMap().get("playGameState"));
+        story.storyPartFinished = false;
 
         }
     }

@@ -37,7 +37,7 @@ public class PlayGameState extends GameState {
     @Override
     protected void doUpdate(long tpf) {
 
-    checkForNewStory();
+
     }
 
     @Override
@@ -45,6 +45,7 @@ public class PlayGameState extends GameState {
         // renders the objects displays text etc
         gameMap.render(character.position);
         chooseMenu.render();
+        checkForNewStory();
        // story.render(getProcessing());
 
         //chooseMenu.render();
