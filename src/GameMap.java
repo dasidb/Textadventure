@@ -143,33 +143,33 @@ public class GameMap {
 
       //1. first room game starts here its youre home and you will have a short intro here
       tmpvec = new PVector(1,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,true,false,false));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Garten",false,true,false,false));
       //tmpvec = new PVector(11,10);
 
 
       //2. second room, here you meet 1 to 3 persons, they will drop somehow an item
       tmpvec = new PVector(2,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",true,true,true,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Flur",true,true,true,true));
 
       //3.  Third room has an Interaction with an item of the 2. Room let you continue to room 5.
       tmpvec = new PVector(2,5);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",true,true,false,false));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Wohnzimmer",true,true,false,false));
 
       //4. fourth room just some story room may continue a riddle
       tmpvec = new PVector(2,3);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,false,true,false));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Badezimmer",false,false,true,false));
 
       //5. fivt room gets opened through a item from the 3. Room has some item
       tmpvec = new PVector(3,5);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,false,false,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Küche",false,false,false,true));
 
       //6. sixt room
       tmpvec = new PVector(3,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,true,false,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Schlafzimmer",false,true,false,true));
 
       //7. Seventh room
       tmpvec = new PVector(4,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Home/ Start",false,false,false,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Arbeitszimmer",false,false,false,true));
   }
 
     public void render(PVector characterPosi){

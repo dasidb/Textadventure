@@ -43,7 +43,7 @@ public class ChooseMenu {
         pApplet.text(inputValue,600,150, 70,80);
 
     }
-    public void chooseOption(String choiceSelected){
+    public String chooseOption(String choiceSelected){
         String userchoice = choiceSelected.toLowerCase();
         userchoice = userchoice.replace("\n", "");
         PVector tmpVec = new PVector();
@@ -54,7 +54,8 @@ public class ChooseMenu {
                 tmpVec.y = -1;
 
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitNorth)
-                    break;
+                    return "Du kannst nicht nach Norden gehen";
+                   // break;
 
                 character.moveCharacter(tmpVec);
                 break;
@@ -63,7 +64,8 @@ public class ChooseMenu {
                 tmpVec.y = 1;
                 System.out.println(character.getPosition());
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitSouth)
-                    break;
+                    return "Du kannst nicht nach Süden gehen";
+                   // break;
 //
                 character.moveCharacter(tmpVec);
                 break;
@@ -72,14 +74,16 @@ public class ChooseMenu {
                 tmpVec.y = 0;
 
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitWest)
-                    break;
+                    return "Du kannst nicht nach Westen gehen";
+                  //  break;
                 character.moveCharacter(tmpVec);
                 break;
             case "move right":
                 tmpVec.x = 1;
                 tmpVec.y = 0;
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitEast)
-                    break;
+                    return "Du kannst nicht nach Osten gehen";
+                   // break;
                 character.moveCharacter(tmpVec);
                 break;
             case "search":
@@ -89,7 +93,7 @@ public class ChooseMenu {
                 System.out.println(character.getKeyList().size());
                 break;
         }
-
+    return "";
     }
 
 

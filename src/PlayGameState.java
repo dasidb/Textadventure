@@ -14,6 +14,8 @@ public class PlayGameState extends GameState {
     Character character;
     ChooseMenu chooseMenu;
     Story story;
+    String cannotMove = "";
+    String currentRoomName = "";
 
 
     public PlayGameState(PApplet pApplet, GameManager gameManager){
@@ -36,7 +38,7 @@ public class PlayGameState extends GameState {
 
     @Override
     protected void doUpdate(long tpf) {
-
+    pApplet.clear();
 
     }
 
@@ -46,6 +48,8 @@ public class PlayGameState extends GameState {
         gameMap.render(character.position);
         chooseMenu.render();
         checkForNewStory();
+        drawCannotMove();
+        displayCurrentRoomName();
        // story.render(getProcessing());
 
         //chooseMenu.render();
@@ -92,7 +96,7 @@ public class PlayGameState extends GameState {
 
             //Currently bad designed should split it into different methods
             if(key == PApplet.ENTER){
-                chooseMenu.chooseOption(chooseMenu.inputValue);
+                cannotMove = chooseMenu.chooseOption(chooseMenu.inputValue);
         /*        if(!gameMap.getWorldMap().get(character.position).hasNewStory) {
                     if (gameManager.getGameStateMap().containsKey("storyGameState")) {
                         try {
@@ -128,6 +132,10 @@ public class PlayGameState extends GameState {
         }
     }
 
+    public void drawCannotMove(){
+        pApplet.text(cannotMove, 50,50);
+    }
+
 
     public void checkForNewStory(){
         System.out.println(gameMap.worldMap.get(character.getPosition()).hasNewStory + " das ist new story");
@@ -150,6 +158,12 @@ public class PlayGameState extends GameState {
         }
     }
 
+    public void displayCurrentRoomName(){
+        if(character.getPosition().x == 3 && character.getPosition().y == 5) {
+            pApplet.text("Du befindest dich aktuell in der " + gameMap.worldMap.get(character.getPosition()).roomName, 600,300,200,100);
 
+        }else
+        pApplet.text("Du befindest dich aktuell im " + gameMap.worldMap.get(character.getPosition()).roomName, 600,300,200,100);
+    }
 
 }
