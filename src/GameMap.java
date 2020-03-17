@@ -2,12 +2,15 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class GameMap {
     Map<PVector,Room> worldMap = new HashMap<>();
     PApplet pApplet;
     Map<Integer,Item> itemMap = new HashMap<>();
+    Set<Integer> itemSet = new HashSet<>();
 
     public GameMap(PApplet pApplet){
         this.pApplet = pApplet;
@@ -15,6 +18,10 @@ public class GameMap {
         //createManualGameMap();
         createManualGameMap1();
         createItemMap();
+    }
+
+    public GameMap(){
+
     }
 
     public Map<PVector, Room> getWorldMap() {
@@ -203,14 +210,12 @@ public class GameMap {
     // Maximal gewicht 35
 
     public void createItemMap(){
-      itemMap.put(0,new Item("50€",50,0));
-      itemMap.put(1,new Item("100€",100,0));
-      itemMap.put(2,new Item("200€",200,0));
-      itemMap.put(3,new Item("500€",500,0));
-      itemMap.put(4,new Item("Perlenkette",1000,1));
-      itemMap.put(5,new Item("Ring",500,1));
-      itemMap.put(6,new Item("Uhr",80,1));
-      itemMap.put(7,new Item("Smartphone",600,1));
+
+      itemMap.put(4,new Item("200€",200,0));
+      itemMap.put(5,new Item("500€",500,0));
+      itemMap.put(6,new Item("Ring",500,1));
+      itemMap.put(7,new Item("Uhr",80,1));
+      itemMap.put(9,new Item("Smartphone",600,1));
 
       itemMap.put(200,new Item("Schlüssel",5,1));
       itemMap.put(201,new Item("Schuhe",50,1));
@@ -239,10 +244,43 @@ public class GameMap {
         itemMap.put(302,new Item("Schreibtischlampe",300,3));
         itemMap.put(303,new Item("Geheime Firmendokumente", 2400,1));
 
+    }
+
+    public static void main(String[] args) {
+      GameMap test = new GameMap();
+
+      test.fillRoomList(5);
+    }
 
 
+    public void fillRoomList(int roomID) {
+      int realchoice;
+      int tmpIncremnt = 3;
+        for (int i = 0; i < tmpIncremnt; i++) {
+            int firstChoose = (int) (Math.random() * 10);
+
+            if(itemSet.contains(firstChoose)){
+
+                tmpIncremnt++;
+
+            }else {
 
 
+                if (firstChoose > 3) {
+                    realchoice = firstChoose;
+                    System.out.println(realchoice);
+                } else {
+                   // firstChoose += (roomID * 100);
+                    realchoice = firstChoose + (roomID *100);
+                    System.out.println(realchoice);
+                }
+            }
+
+
+            itemSet.add(firstChoose);
+
+        }
+    }
 
     }
-}
+
