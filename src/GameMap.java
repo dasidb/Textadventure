@@ -7,12 +7,14 @@ import java.util.Map;
 public class GameMap {
     Map<PVector,Room> worldMap = new HashMap<>();
     PApplet pApplet;
+    Map<Integer,Item> itemMap = new HashMap<>();
 
     public GameMap(PApplet pApplet){
         this.pApplet = pApplet;
         //createGameMap();
         //createManualGameMap();
         createManualGameMap1();
+        createItemMap();
     }
 
     public Map<PVector, Room> getWorldMap() {
@@ -196,5 +198,51 @@ public class GameMap {
 
 
         }
+    }
+
+    // Maximal gewicht 35
+
+    public void createItemMap(){
+      itemMap.put(0,new Item("50€",50,0));
+      itemMap.put(1,new Item("100€",100,0));
+      itemMap.put(2,new Item("200€",200,0));
+      itemMap.put(3,new Item("500€",500,0));
+      itemMap.put(4,new Item("Perlenkette",1000,1));
+      itemMap.put(5,new Item("Ring",500,1));
+      itemMap.put(6,new Item("Uhr",80,1));
+      itemMap.put(7,new Item("Smartphone",600,1));
+
+      itemMap.put(200,new Item("Schlüssel",5,1));
+      itemMap.put(201,new Item("Schuhe",50,1));
+      itemMap.put(202,new Item("Jacke",120,3));
+      itemMap.put(203,new Item("Regenschirm",15,2));
+
+        itemMap.put(300,new Item("Fernseher",700,20));
+        itemMap.put(301,new Item("Xbox One",400,5));
+        itemMap.put(302,new Item("Switch",300,5));
+        itemMap.put(303,new Item("PS 4", 400,5));
+
+        itemMap.put(400,new Item("Klopapier",1337,1));
+
+        itemMap.put(500,new Item("Toaster",80,3));
+        itemMap.put(501,new Item("Mixxer",90,3));
+        itemMap.put(502,new Item("Küchenrolle",30,1));
+        itemMap.put(503,new Item("Mikrowelle", 60,10));
+
+        itemMap.put(600,new Item("Lottoschein",1,1));
+        itemMap.put(601,new Item("Spielzeug",30,2));
+        itemMap.put(602,new Item("Fernseher",300,20));
+        itemMap.put(603,new Item("Laptop", 900,5));
+
+        itemMap.put(300,new Item("Router",200,2));
+        itemMap.put(301,new Item("Computer",800,10));
+        itemMap.put(302,new Item("Schreibtischlampe",300,3));
+        itemMap.put(303,new Item("Geheime Firmendokumente", 2400,1));
+
+
+
+
+
+
     }
 }

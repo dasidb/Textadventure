@@ -1,6 +1,9 @@
 import processing.core.PImage;
 import processing.core.PVector;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Room {
     PVector mapCoordinates;
     String roomName;
@@ -16,6 +19,7 @@ public abstract class Room {
     static int roomCount = 0;
     final int roomID;
     int storyID = 0;
+    List<Item> itemList = new ArrayList<>();
 
     public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest) {
         roomID = roomCount;
@@ -29,6 +33,21 @@ public abstract class Room {
         this.exitWest = exitWest;
 
 
+
+
+    }
+
+    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, ArrayList<Item> itemList) {
+        roomID = roomCount;
+        roomCount++;
+
+        this.mapCoordinates = mapCoordinates;
+        this.roomName = roomName;
+        this.exitNorth = exitNorth;
+        this.exitEast = exitEast;
+        this.exitSouth = exitSouth;
+        this.exitWest = exitWest;
+        this.itemList = itemList;
 
 
     }
