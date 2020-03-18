@@ -13,6 +13,8 @@ public class ChooseMenu {
     String choice3 = "Move Left";
     String choice4 = "Move Right";
     String choice5 = "Search";
+    String choiceEscape = "Escape";
+    String takeInstruction = " Zum Auswählen die Zahlen 1, 2 oder 3 eingeben.";
     String inputValue = "";
     List<String> takeList = new ArrayList<>();
     String takeItem1 = "";
@@ -53,11 +55,14 @@ public class ChooseMenu {
             pApplet.text(choice3, 600, 90);
             pApplet.text(choice4, 600, 120);
             pApplet.text(choice5, 600, 150);
+            if(character.getPosition().x == 1 && character.getPosition().y == 4)
+            pApplet.text(choiceEscape,600,180);
             pApplet.fill(0, 0, 0);
-            pApplet.rect(600, 150, 70, 80);
+            pApplet.rect(600, 190, 70, 80);
         }else{
-            int posiTakeList = 30;
+            int posiTakeList = 120;
             int incrementOption = 1;
+            pApplet.text(takeInstruction,600,30,200,200);
             for(String takeOption : takeList) {
                 pApplet.text(Integer.toString(incrementOption) + takeOption, 600, posiTakeList);
                 posiTakeList += 30;
@@ -66,7 +71,7 @@ public class ChooseMenu {
 
         }
         pApplet.fill(255,255,255);
-        pApplet.text(inputValue,600,150, 70,80);
+        pApplet.text(inputValue,600,210, 70,80);
 
 
     }
@@ -198,6 +203,13 @@ public class ChooseMenu {
                         wantToTake = false;
                         return "Du nimmst " + tmpName;
                     }
+            case "escape" :
+                if(character.getPosition().x == 1 && character.getPosition().y == 4)
+
+                return "Du hast Sachen im wert von " + character.getValue() + "€ erbeutet.";
+                else
+                    return "Du musst dich dafür im Garten befinden.";
+
         }
 
     return "";

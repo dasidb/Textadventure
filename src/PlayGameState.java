@@ -96,6 +96,9 @@ public class PlayGameState extends GameState {
             //Currently bad designed should split it into different methods
             if(key == PApplet.ENTER){
                 chooseResult = chooseMenu.chooseOption(chooseMenu.inputValue);
+                if(chooseResult.startsWith("Du hast Sachen im wert von")){
+                    gameManager.setCurrentGameState(new EndGameState(getProcessing(),gameManager, chooseResult));
+                }
         /*        if(!gameMap.getWorldMap().get(character.position).hasNewStory) {
                     if (gameManager.getGameStateMap().containsKey("storyGameState")) {
                         try {
@@ -132,7 +135,7 @@ public class PlayGameState extends GameState {
     }
 
     public void drawCannotMove(){
-        pApplet.text(chooseResult, 50,50, 600,600);
+        pApplet.text(chooseResult, 50,50, 550,600);
     }
 
 

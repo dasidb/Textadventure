@@ -30,20 +30,7 @@ public class GameMap {
         this.worldMap = worldMap;
     }
 
-    public void createGameMap(){
-        for(int y = 0; y < 5; y++){
-            for(int x = 0; x < 5; x++){
-                PVector pVector = new PVector(x,y);
-                if(y ==1 && x ==0) {
-                    worldMap.put(pVector, new MoneyRoom(pVector, "TestRaun", false, true, false, false, new KeyforDoors(1)));
-                }else
 
-                worldMap.put(pVector, new MoneyRoom(pVector,"TestRaun",false,true,true,false));
-
-
-            }
-        }
-    }
 
   /*  public void createManualGameMap(){
         PVector tmpVec = new PVector(0,0);
@@ -150,7 +137,7 @@ public class GameMap {
 
       //1. first room game starts here its youre home and you will have a short intro here
       tmpvec = new PVector(1,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Garten",false,true,false,false));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Garten",false,true,false,false,true));
       //tmpvec = new PVector(11,10);
 
 
@@ -260,8 +247,7 @@ public class GameMap {
       itemSet = new HashSet<>();
         for (int i = 0; i < tmpIncremnt; i++) {
             int firstChoose = (int) (Math.random() * 10);
-            if(roomID == 2)
-            System.out.println(firstChoose + " before");
+
             if(itemSet.contains(firstChoose)){
 
                 tmpIncremnt++;
@@ -275,21 +261,39 @@ public class GameMap {
                     itemSet.add(realchoice);
                 } else {
                    // firstChoose += (roomID * 100);
-                    if( roomID == 2)
-                    System.out.println(" ds ist firstchoose " + firstChoose);
-                    realchoice = firstChoose + (roomID *100);
 
-                    itemSet.add(realchoice);
+
+                        realchoice = firstChoose + (roomID * 100);
+
+                        itemSet.add(realchoice);
+
                 }
-                if( roomID == 2)
-                System.out.println("das ist realchoice" + realchoice);
+
+
             }
 
 
           //  itemSet.add(firstChoose);
 
         }
-        System.out.println(itemSet);
+        // Work around da er manchmal nur 2 added...
+        if(itemSet.size() <3) {
+            if (!itemSet.contains(9)) {
+                itemSet.add(9);
+            }
+        }
+        if(itemSet.size() <3) {
+            if(!itemSet.contains(8))
+                itemSet.add(8);
+        }
+        if(itemSet.size() <3) {
+            if(!itemSet.contains(7))
+                itemSet.add(7);
+        }
+        if(itemSet.size() <3) {
+            if(!itemSet.contains(6))
+                itemSet.add(6);
+        }
         return itemSet;
     }
 

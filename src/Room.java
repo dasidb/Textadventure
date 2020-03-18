@@ -21,8 +21,9 @@ public abstract class Room {
     int storyID = 0;
     List<Item> itemList = new ArrayList<>();
     boolean hasSearched = false;
+    boolean canEscape;
 
-    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest) {
+    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, boolean canEscape) {
         roomID = roomCount;
         roomCount++;
 
@@ -32,6 +33,7 @@ public abstract class Room {
         this.exitEast = exitEast;
         this.exitSouth = exitSouth;
         this.exitWest = exitWest;
+        this.canEscape = canEscape;
 
 
 

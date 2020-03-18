@@ -5,8 +5,8 @@ import java.util.List;
 
 public class MoneyRoom extends Room {
 
-    public MoneyRoom(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest){
-        super(mapCoordinates,roomName,exitNorth,exitEast,exitSouth,exitWest);
+    public MoneyRoom(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, boolean canEscape){
+        super(mapCoordinates,roomName,exitNorth,exitEast,exitSouth,exitWest, canEscape);
         setImg(Game.getImageMap().get("bathroom"));
     }
 
