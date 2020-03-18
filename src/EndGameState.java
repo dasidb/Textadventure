@@ -1,4 +1,5 @@
 import processing.core.PApplet;
+import processing.event.KeyEvent;
 
 public class EndGameState extends GameState{
 
@@ -20,5 +21,16 @@ public class EndGameState extends GameState{
 
     }
 
+    @Override
+    public void keyPressed(KeyEvent event) {
+        if(pApplet.keyPressed){
+            if (pApplet.key == pApplet.ENTER){
+                gameManager.setCurrentGameState(new UpgradeMenuGameState(getProcessing(),gameManager,((PlayGameState)gameManager.getGameStateMap().get("playGameState")).getCharacter()));
 
+
+
+
+            }
+        }
+    }
 }

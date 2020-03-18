@@ -12,7 +12,15 @@ public class Character {
     List<Item> inventory = new ArrayList();
     int weight = 0;
     int maxWeight = 35;
-    int value = 0;
+    int money = 0;
+
+    public int getMaxWeight() {
+        return maxWeight;
+    }
+
+    public void setMaxWeight(int maxWeight) {
+        this.maxWeight = maxWeight;
+    }
 
     public Character(PVector position){
         this.position = position;
@@ -78,14 +86,27 @@ public class Character {
         for(Item item : inventory){
             tmpValue += item.value;
         }
+        setMoney(tmpValue);
         return tmpValue;
     }
 
-    public int getValue() {
+    public int getInventoryValue() {
         return calculateValue();
     }
 
-    public void setValue(int value) {
-        this.value = value;
+    public int getMoney(){
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+
+    public boolean upgradeWeight(int valueOfUpgrade){
+        if(maxWeight < 50) {
+            maxWeight += valueOfUpgrade;
+            return true;
+        }else
+            return false;
     }
 }

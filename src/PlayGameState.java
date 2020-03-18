@@ -16,6 +16,13 @@ public class PlayGameState extends GameState {
     String chooseResult = "";
     String currentRoomName = "";
 
+    public Character getCharacter() {
+        return character;
+    }
+
+    public void setCharacter(Character character) {
+        this.character = character;
+    }
 
     public PlayGameState(PApplet pApplet, GameManager gameManager){
         super(pApplet,gameManager);
@@ -30,6 +37,7 @@ public class PlayGameState extends GameState {
         character = new Character(new PVector(1,4));
         chooseMenu = new ChooseMenu(getProcessing(),character,gameMap);
         //story = new Story();
+        System.out.println(character + " playgame");
 
 
 
@@ -49,6 +57,7 @@ public class PlayGameState extends GameState {
         checkForNewStory();
         drawCannotMove();
         displayCurrentRoomName();
+        displayCurrentWeight();
        // story.render(getProcessing());
 
         //chooseMenu.render();
@@ -93,33 +102,12 @@ public class PlayGameState extends GameState {
 
             }
 
-            //Currently bad designed should split it into different methods
+
             if(key == PApplet.ENTER){
                 chooseResult = chooseMenu.chooseOption(chooseMenu.inputValue);
                 if(chooseResult.startsWith("Du hast Sachen im wert von")){
                     gameManager.setCurrentGameState(new EndGameState(getProcessing(),gameManager, chooseResult));
                 }
-        /*        if(!gameMap.getWorldMap().get(character.position).hasNewStory) {
-                    if (gameManager.getGameStateMap().containsKey("storyGameState")) {
-                        try {
-
-                            gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));
-                            ((StoryGameState) gameManager.getCurrentGameState()).getStory().readStoryFromFile(gameMap.getWorldMap()
-                                    .get(character.getPosition()).roomID, gameMap.getWorldMap().get(character.getPosition()).storyID);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));
-
-
-                    } else {
-
-
-                        gameManager.getGameStateMap().put("storyGameState",new StoryGameState(getProcessing(),
-                                gameManager, gameMap.getWorldMap().get(character.getPosition()).getRoomAndStoryString()));
-                        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));
-                    }
-                } */
                 chooseMenu.setInputValue("");
 
             }
@@ -166,6 +154,10 @@ public class PlayGameState extends GameState {
 
         }else
         pApplet.text("Du befindest dich aktuell im " + gameMap.worldMap.get(character.getPosition()).roomName, 600,300,200,100);
+    }
+
+    public void displayCurrentWeight(){
+        pApplet.text("Du hast aktuell ein Gewicht von " + character.getWeight() + " Kilo dabei.",600,600,200,200);
     }
 
 }

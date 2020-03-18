@@ -2,9 +2,7 @@ import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ChooseMenu {
     PApplet pApplet;
@@ -13,6 +11,7 @@ public class ChooseMenu {
     String choice3 = "Move Left";
     String choice4 = "Move Right";
     String choice5 = "Search";
+    String choice6 = "Take";
     String choiceEscape = "Escape";
     String takeInstruction = " Zum Auswählen die Zahlen 1, 2 oder 3 eingeben.";
     String inputValue = "";
@@ -26,6 +25,16 @@ public class ChooseMenu {
     boolean wantToTake = false;
     String tmpName;
 
+
+
+
+    public boolean isWantToTake() {
+        return wantToTake;
+    }
+
+    public void setWantToTake(boolean wantToTake) {
+        this.wantToTake = wantToTake;
+    }
 
     public ChooseMenu(PApplet pApplet, Character character, GameMap gameMap){
         this.pApplet = pApplet;
@@ -45,6 +54,7 @@ public class ChooseMenu {
     public void render(){
         drawChoices();
     }
+
     public void drawChoices(){
         pApplet.textSize(16);
 
@@ -55,10 +65,11 @@ public class ChooseMenu {
             pApplet.text(choice3, 600, 90);
             pApplet.text(choice4, 600, 120);
             pApplet.text(choice5, 600, 150);
+            pApplet.text(choice6,600,180);
             if(character.getPosition().x == 1 && character.getPosition().y == 4)
-            pApplet.text(choiceEscape,600,180);
+            pApplet.text(choiceEscape,600,210);
             pApplet.fill(0, 0, 0);
-            pApplet.rect(600, 190, 70, 80);
+            pApplet.rect(600, 220, 70, 80);
         }else{
             int posiTakeList = 120;
             int incrementOption = 1;
@@ -71,10 +82,11 @@ public class ChooseMenu {
 
         }
         pApplet.fill(255,255,255);
-        pApplet.text(inputValue,600,210, 70,80);
+        pApplet.text(inputValue,600,240, 70,50);
 
 
     }
+
     public String chooseOption(String choiceSelected){
         System.out.println(character.inventory);
         System.out.println(character.getWeight());
@@ -83,75 +95,68 @@ public class ChooseMenu {
         PVector tmpVec = new PVector();
         switch(userchoice) {
             case "move up":
-                //mache das
                 tmpVec.x = 0;
                 tmpVec.y = -1;
-
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitNorth)
                     return "Du kannst nicht nach Norden gehen";
-                   // break;
-
                 character.moveCharacter(tmpVec);
                 break;
+
             case "move down":
                 tmpVec.x = 0;
                 tmpVec.y = 1;
                 System.out.println(character.getPosition());
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitSouth)
                     return "Du kannst nicht nach Süden gehen";
-                   // break;
-//
                 character.moveCharacter(tmpVec);
                 break;
+
             case "move left":
                 tmpVec.x = -1;
                 tmpVec.y = 0;
-
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitWest)
                     return "Du kannst nicht nach Westen gehen";
-                  //  break;
                 character.moveCharacter(tmpVec);
                 break;
+
             case "move right":
                 tmpVec.x = 1;
                 tmpVec.y = 0;
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitEast)
                     return "Du kannst nicht nach Osten gehen";
-                   // break;
                 character.moveCharacter(tmpVec);
                 break;
+
             case "search":
                 if(gameMap.getWorldMap().get(character.getPosition()).hasSearched){
                     return "Du hast diesen Raum bereits durchsucht";
                 }else {
                     gameMap.getWorldMap().get(character.getPosition()).hasSearched = true;
-                    System.out.println("test");
-                    System.out.println(character.getPosition());
                     if (character.getPosition().x == 1 && character.getPosition().y == 4) {
-                        System.out.println("bdwaidiawjodwa");
                         return "Du befindest dich im Garten, hier gibt es leider nichts wertvolles.";
                     } else {
-
                         tmpList = gameMap.getWorldMap().get(character.position).itemList;
-                        System.out.println(tmpList.size() + " länge tmplist");
-                        System.out.println(tmpList);
-                        System.out.println("Als du nach links blickst entdeckst du " + tmpList.get(0).name + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).name + " als letztes fällt dir " +
-                                tmpList.get(2).name + " ins Auge");
                         return "Als du nach links blickst entdeckst du " + tmpList.get(0).name + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).name + " als letztes fällt dir " +
                                 tmpList.get(2).name + " ins Auge";
                     }
                 }
 
             case "take":
-                if(!gameMap.getWorldMap().get(character.getPosition()).hasSearched){
-                    return "Du musst den Raum erst durchsuchen";
-                }else {
-                    int increment = 0;
-                    takeList = new ArrayList<>();
-                    if (character.getPosition().x == 1 && character.getPosition().y == 4) {
-                        return "Hier gibt es nichts zu holen";
-                    } else {
-                        wantToTake = true;
+                    if(character.getPosition().x == 1 && character.getPosition().y == 4) {
+                       return  "Hier gibt es einfach nichts.";
+                    }else {
+
+                        if (!gameMap.getWorldMap().get(character.getPosition()).hasSearched) {
+                            return "Du musst den Raum erst durchsuchen";
+                        } else if (tmpList.size() == 0) {
+                            return "Es gibt nichts mehr zum suchen.";
+                        } else {
+                            int increment = 0;
+                            takeList = new ArrayList<>();
+                            if (character.getPosition().x == 1 && character.getPosition().y == 4) {
+                                return "Hier gibt es nichts zu holen";
+                            } else {
+                                setWantToTake(true);
            /*         if(tmpList.get(0) == null){
 
                     }else{
@@ -162,77 +167,69 @@ public class ChooseMenu {
                     takeitem2 = tmpList.get(1).name;
                     takeitem3 = tmpList.get(2).name; */
 
-                        for (Item item : tmpList) {
-                            takeList.add(item.name);
-                        }
+                                for (Item item : tmpList) {
+                                    takeList.add(item.name);
+                                }
 
+                            }
+
+                            break;
+                        }
                     }
 
-                    break;
-                }
             case "1":
-                if(tmpList.size() != 1){
-                    break;
-                }else {
                     if (wantToTake)
                         if (character.maxWeight < character.getWeight())
-                            return "du bist überladen.";
+                            return "Du bist überladen. Es ist an der Zeit zu verschwinden.";
                         else {
+                            try {
                             character.inventory.add(tmpList.get(0));
                             tmpName = tmpList.get(0).name;
                             tmpList.remove(0);
-
-                            wantToTake = false;
+                            setWantToTake(false);
                             return "Du nimmst " + tmpName;
-                        }
+                            }catch (Exception e){
+                                break;
+                            }
                 }
 
-
             case "2":
-                if(tmpList.size() != 2){
-                    break;
-                }else {
                 if(wantToTake)
                     if(character.maxWeight < character.getWeight())
-                        return "du bist überladen.";
+                        return "Du bist überladen. Es ist an der Zeit zu verschwinden.";
                     else {
+                        try {
                         character.inventory.add(tmpList.get(1));
                         tmpName = tmpList.get(1).name;
                         tmpList.remove(1);
-                        wantToTake = false;
+                        setWantToTake(false);
                         return "Du nimmst " + tmpName;
-                    }
+                        }catch (Exception e){
+                            break;
+                        }
+
                     }
             case "3":
-                if(tmpList.size() != 3){
-                    break;
-                }else {
                     if (wantToTake)
                         if (character.maxWeight < character.getWeight())
-                            return "du bist überladen.";
+                            return "Du bist überladen. Es ist an der Zeit zu verschwinden.";
                         else {
-                            character.inventory.add(tmpList.get(2));
-                            tmpName = tmpList.get(2).name;
-                            tmpList.remove(2);
-                            wantToTake = false;
-                            return "Du nimmst " + tmpName;
+                            try {
+                                character.inventory.add(tmpList.get(2));
+                                tmpName = tmpList.get(2).name;
+                                tmpList.remove(2);
+                                setWantToTake(false);
+                                return "Du nimmst " + tmpName;
+                            }catch (Exception e){
+                                break;
+                            }
                         }
-                }
+
             case "escape" :
                 if(character.getPosition().x == 1 && character.getPosition().y == 4)
 
-                return "Du hast Sachen im wert von " + character.getValue() + "€ erbeutet.";
-                //else
-                    //return "Du musst dich dafür im Garten befinden.";
-
+                return "Du hast Sachen im wert von " + character.getInventoryValue() + "€ erbeutet.";
         }
-
-
-
-
     return "";
     }
-
-
-
 }

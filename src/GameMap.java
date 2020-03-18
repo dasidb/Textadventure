@@ -8,13 +8,16 @@ public class GameMap {
     PApplet pApplet;
     Map<Integer,Item> itemMap = new HashMap<>();
     Set<Integer> itemSet;
+    ItemManager itemManager;
 
     public GameMap(PApplet pApplet){
         this.pApplet = pApplet;
+        itemManager = new ItemManager();
         //createGameMap();
         //createManualGameMap();
-        createItemMap();
+        //createItemMap();
         createManualGameMap1();
+
 
     }
 
@@ -143,27 +146,27 @@ public class GameMap {
 
       //2. second room, here you meet 1 to 3 persons, they will drop somehow an item
       tmpvec = new PVector(2,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Flur",true,true,true,true, addItemsToRoomList(2)));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Flur",true,true,true,true, itemManager.addItemsToRoomList(2)));
 
       //3.  Third room has an Interaction with an item of the 2. Room let you continue to room 5.
       tmpvec = new PVector(2,5);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Wohnzimmer",true,true,false,false, addItemsToRoomList(3)));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Wohnzimmer",true,true,false,false, itemManager.addItemsToRoomList(3)));
 
       //4. fourth room just some story room may continue a riddle
       tmpvec = new PVector(2,3);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Badezimmer",false,false,true,false, addItemsToRoomList(4)));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Badezimmer",false,false,true,false, itemManager.addItemsToRoomList(4)));
 
       //5. fivt room gets opened through a item from the 3. Room has some item
       tmpvec = new PVector(3,5);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Küche",false,false,false,true, addItemsToRoomList(5)));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Küche",false,false,false,true, itemManager.addItemsToRoomList(5)));
 
       //6. sixt room
       tmpvec = new PVector(3,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Schlafzimmer",false,true,false,true, addItemsToRoomList(6)));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Schlafzimmer",false,true,false,true, itemManager.addItemsToRoomList(6)));
 
       //7. Seventh room
       tmpvec = new PVector(4,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Arbeitszimmer",false,false,false,true, addItemsToRoomList(7)));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Arbeitszimmer",false,false,false,true, itemManager.addItemsToRoomList(7)));
   }
 
     public void render(PVector characterPosi){
@@ -191,124 +194,5 @@ public class GameMap {
 
         }
     }
-
-    // Maximal gewicht 35
-
-    public void createItemMap(){
-      itemMap.put(4,new Item("100",100,0));
-      itemMap.put(5,new Item("200€",200,0));
-      itemMap.put(6,new Item("500€",500,0));
-      itemMap.put(7,new Item("Ring",500,1));
-      itemMap.put(8,new Item("Uhr",80,1));
-      itemMap.put(9,new Item("Smartphone",600,1));
-
-      itemMap.put(200,new Item("Schlüssel",5,1));
-      itemMap.put(201,new Item("Schuhe",50,1));
-      itemMap.put(202,new Item("Jacke",120,3));
-      itemMap.put(203,new Item("Regenschirm",15,2));
-
-        itemMap.put(300,new Item("Fernseher",700,20));
-        itemMap.put(301,new Item("Xbox One",400,5));
-        itemMap.put(302,new Item("Switch",300,5));
-        itemMap.put(303,new Item("PS 4", 400,5));
-
-        itemMap.put(400,new Item("Klopapier",1337,1));
-        itemMap.put(401,new Item("Klopapier",1337,1));
-        itemMap.put(402,new Item("Klopapier",1337,1));
-        itemMap.put(403,new Item("Klopapier",1337,1));
-
-        itemMap.put(500,new Item("Toaster",80,3));
-        itemMap.put(501,new Item("Mixxer",90,3));
-        itemMap.put(502,new Item("Küchenrolle",30,1));
-        itemMap.put(503,new Item("Mikrowelle", 60,10));
-
-        itemMap.put(600,new Item("Lottoschein",1,1));
-        itemMap.put(601,new Item("Spielzeug",30,2));
-        itemMap.put(602,new Item("Fernseher",300,20));
-        itemMap.put(603,new Item("Laptop", 900,5));
-
-        itemMap.put(700,new Item("Router",200,2));
-        itemMap.put(701,new Item("Computer",800,10));
-        itemMap.put(702,new Item("Schreibtischlampe",300,3));
-        itemMap.put(703,new Item("Geheime Firmendokumente", 2400,1));
-
-    }
-
-    public static void main(String[] args) {
-      GameMap test = new GameMap();
-    test.createItemMap();
-      test.addItemsToRoomList(5);
-    }
-
-
-    public Set<Integer> fillRoomList(int roomID) {
-      int realchoice;
-      int tmpIncremnt = 3;
-      itemSet = new HashSet<>();
-        for (int i = 0; i < tmpIncremnt; i++) {
-            int firstChoose = (int) (Math.random() * 10);
-
-            if(itemSet.contains(firstChoose)){
-
-                tmpIncremnt++;
-
-            }else {
-
-
-                if (firstChoose > 3) {
-                    realchoice = firstChoose;
-
-                    itemSet.add(realchoice);
-                } else {
-                   // firstChoose += (roomID * 100);
-
-
-                        realchoice = firstChoose + (roomID * 100);
-
-                        itemSet.add(realchoice);
-
-                }
-
-
-            }
-
-
-          //  itemSet.add(firstChoose);
-
-        }
-        // Work around da er manchmal nur 2 added...
-        if(itemSet.size() <3) {
-            if (!itemSet.contains(9)) {
-                itemSet.add(9);
-            }
-        }
-        if(itemSet.size() <3) {
-            if(!itemSet.contains(8))
-                itemSet.add(8);
-        }
-        if(itemSet.size() <3) {
-            if(!itemSet.contains(7))
-                itemSet.add(7);
-        }
-        if(itemSet.size() <3) {
-            if(!itemSet.contains(6))
-                itemSet.add(6);
-        }
-        return itemSet;
-    }
-
-    public List<Item> addItemsToRoomList(int roomID){
-      Set<Integer> numbers = fillRoomList(roomID);
-      List<Item> roomItemList = new ArrayList<>();
-
-
-
-        for(Integer itemID : numbers){
-            roomItemList.add(itemMap.get(itemID));
-        }
-
-        return roomItemList;
-    }
-
-    }
+}
 
