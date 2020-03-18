@@ -46,9 +46,9 @@ public class Story {
 
         //pApplet.clear();
         pApplet.fill(0,0,0);
-        pApplet.rect(50,50,500,350);
+        pApplet.rect(50,50,500,800);
         pApplet.fill(255,255,255);
-        pApplet.text(delayedStory,50,50,500,500);
+        pApplet.text(delayedStory,50,50,500,800);
         if(counter > 1) {
             delayStoryDraw();
             counter = 0;

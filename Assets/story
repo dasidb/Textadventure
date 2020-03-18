@@ -1,22 +1,41 @@
 #TestProperties
-[0][0] = "hier steht die aller erste story vom 1. Raum fmekfmmfewmk f mkewfm lkewmf klewm flkewfkmewfmlke \
-  fewfpokfewfkp fewfewf "
-[0][1] = "Hier steht die zweite Story vom 1. Raum"
 
-[1][0] = "hier steht die aller erste story vom 2. Raum"
-[1][1] = "Hier steht die zweite Story vom 2. Raum"
+[0][0] = "Du stehst nun endlich vor einem Haus, das sich scheinbar perfekt für einen Einbruch eignet. Alle Lichter sind aus und die Eingangstür scheint unverschlossen zu sein." 
 
-[2][0] = "hier steht die aller erste story vom 3. Raum"
-[2][1] = "Hier steht die zweite Story vom 3. Raum"
+[0][1] = "Hier steht die zweite Story vom 1. Raum" 
 
-[3][0] = "hier steht die aller erste story vom 4. Raum"
-[3][1] = "Hier steht die zweite Story vom 4. Raum"
 
-[4][0] = "hier steht die aller erste story vom 5. Raum"
-[4][1] = "Hier steht die zweite Story vom 5. Raum"
 
-[5][0] = "Hier steht die aller erste story vom 6. Raum"
-[5][1] = "Hier steht die zweite Story vom 6. Raum."
+[1][0] = "Die Leute, die hier wohnen scheinen ziemlich reich zu sein, wenn man sich den Flur hier so ansieht. Den Kronleuchter würde ich gerne mitnehmen, wenn ich doch nur eine Leiter und das nötige Werkzeug hätte." 
 
-[6][0] = "Hier steht die erste Story vom 7. Raum."
-[6][1] = "Hier steht die zweite Story vom 7. Raum."
+[1][1] = "Hier steht die zweite Story vom 2. Raum" 
+
+
+
+[2][0] = "Du läufst geradewegs ins Wohnzimmer. Es ist recht groß, aber dennoch übersichtlich. Sieht ein bisschen aus wie bei Oma zuhause. Es fehlt nur das Spitzendeckchen auf dem Wohnzimmer Tisch." 
+
+[2][1] = "Hier steht die zweite Story vom 3. Raum" 
+
+
+
+[3][0] = "Im Badezimmer gibt es, abgesehen von Klopapier, nicht viel zu holen." 
+
+[3][1] = "Hier steht die zweite Story vom 4. Raum" 
+
+
+
+[4][0] = "Hier riecht es nach Schnitzel, das muss die Küche sein. Hoffentlich lockt der Geruch keine Einbrecher an." 
+
+[4][1] = "Hier steht die zweite Story von der Küche." 
+
+
+
+[5][0] = "Uhh das Schlafzimmer. Hier gibt es sicherlich einiges zu holen. " 
+
+[5][1] = "Hier steht die zweite Story vom 6. Raum." 
+
+
+
+[6][0] = "Du befindest dich jetzt im Arbeitszimmer. Wenn hier mal nicht ein paar geheime Unterlagen versteckt sind. Aber wie sollte man die wichtigen von den unwichtigen unterscheiden. Derjenige, der hier arbeitet, hat bei Weitem kein Verständnis für Ordnung. Auf jeder Ablagefläche liegen Unterlagen wirr gestapelt.” 
+
+[6][1] = "Hier steht die zweite Story vom 7. Raum." 
