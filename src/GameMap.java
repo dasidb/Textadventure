@@ -185,7 +185,7 @@ public class GameMap {
         drawGameMap(characterPosi);
         System.out.println(worldMap.size());
     }
-
+//test
     public void drawGameMap(PVector characterPosi){
       int displayFactor = 100;
         for(Map.Entry<PVector,Room> entry : worldMap.entrySet()){
