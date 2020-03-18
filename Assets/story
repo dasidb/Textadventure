@@ -1,28 +1,26 @@
 #TestProperties
 
-[0][0] = "12"
+[0][0] = "Du stehst nun endlich vor einem Haus, das sich scheinbar perfekt für einen Einbruch eignet. Alle Lichter sind aus und die Eingangstür scheint unverschlossen zu sein." 
 
-[0][x] = "Du stehst nun endlich vor einem Haus, das sich scheinbar perfekt für einen Einbruch eignet. Alle Lichter sind aus und die Eingangstür scheint unverschlossen zu sein." 
-
-[0][1] = "Hier steht die zweite Story vom 1. Raum" 
+[0][1] = "Ein gemütliches kleines Häuschen in einer ruhigen Gegend. Die Gartentür ist nur angelehnt. Vielleicht kommt man über den Garten in das Haus." 
 
 
-[1][0] = "123
-[1][x] = "Die Leute, die hier wohnen scheinen ziemlich reich zu sein, wenn man sich den Flur hier so ansieht. Den Kronleuchter würde ich gerne mitnehmen, wenn ich doch nur eine Leiter und das nötige Werkzeug hätte." 
 
-[1][1] = "Hier steht die zweite Story vom 2. Raum" 
+[1][0] = "Die Leute, die hier wohnen scheinen ziemlich reich zu sein, wenn man sich den Flur hier so ansieht. Den Kronleuchter würde ich gerne mitnehmen, wenn ich doch nur eine Leiter und das nötige Werkzeug hätte." 
+
+[1][1] = "Ein bescheidener Haushalt. Rustikale, abgenutzte Möbel und eine Menge Familienfotos an den Wänden. Fotos von Kindern, weiteren Verwandten und Bekannten." 
 
 
 
 [2][0] = "Du läufst geradewegs ins Wohnzimmer. Es ist recht groß, aber dennoch übersichtlich. Sieht ein bisschen aus wie bei Oma zuhause. Es fehlt nur das Spitzendeckchen auf dem Wohnzimmer Tisch." 
 
-[2][1] = "Hier steht die zweite Story vom 3. Raum" 
+[2][1] = "Hier steht die zweite Story des Wohnzimmers." 
 
 
 
-[3][0] = "Im Badezimmer gibt es, abgesehen von Klopapier, nicht viel zu holen." 
+[3][0] = "Im Badezimmer gibt es, abgesehen von Klopapier, nicht viel zu holen. Es könnte sich trotzdem lohnen sich wenigstens einmal umzuschauen." 
 
-[3][1] = "Hier steht die zweite Story vom 4. Raum" 
+[3][1] = "Hier steht die zweite Story des Badezimmers." 
 
 
 
@@ -32,12 +30,12 @@
 
 
 
-[5][0] = "Uhh das Schlafzimmer. Hier gibt es sicherlich einiges zu holen. " 
+[5][0] = "Uhh, das Schlafzimmer. Hier gibt es sicherlich einiges zu holen. " 
 
-[5][1] = "Hier steht die zweite Story vom 6. Raum." 
+[5][1] = "Hier steht die zweite Story des Schlafzimmers." 
 
 
 
 [6][0] = "Du befindest dich jetzt im Arbeitszimmer. Wenn hier mal nicht ein paar geheime Unterlagen versteckt sind. Aber wie sollte man die wichtigen von den unwichtigen unterscheiden. Derjenige, der hier arbeitet, hat bei Weitem kein Verständnis für Ordnung. Auf jeder Ablagefläche liegen Unterlagen wirr gestapelt.” 
 
-[6][1] = "Hier steht die zweite Story vom 7. Raum." 
+[6][1] = "Hier steht die zweite Story des Arbeitszimmers." 
