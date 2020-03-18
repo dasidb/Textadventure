@@ -142,13 +142,16 @@ public class ChooseMenu {
                     }
                 }
 
-            case "take" :
-                int increment = 0;
-                takeList = new ArrayList<>();
-                if(character.getPosition().x == 1 && character.getPosition().y == 4){
-                    return "Hier gibt es nichts zu holen";
+            case "take":
+                if(!gameMap.getWorldMap().get(character.getPosition()).hasSearched){
+                    return "Du musst den Raum erst durchsuchen";
                 }else {
-                    wantToTake = true;
+                    int increment = 0;
+                    takeList = new ArrayList<>();
+                    if (character.getPosition().x == 1 && character.getPosition().y == 4) {
+                        return "Hier gibt es nichts zu holen";
+                    } else {
+                        wantToTake = true;
            /*         if(tmpList.get(0) == null){
 
                     }else{
@@ -159,29 +162,36 @@ public class ChooseMenu {
                     takeitem2 = tmpList.get(1).name;
                     takeitem3 = tmpList.get(2).name; */
 
-                for(Item item : tmpList){
-                    takeList.add(item.name);
-                }
+                        for (Item item : tmpList) {
+                            takeList.add(item.name);
+                        }
 
-                }
-
-                break;
-
-            case "1":
-                if(wantToTake)
-                    if(character.maxWeight < character.getWeight())
-                        return "du bist überladen.";
-                    else {
-                        character.inventory.add(tmpList.get(0));
-                        tmpName = tmpList.get(0).name;
-                        tmpList.remove(0);
-
-                        wantToTake = false;
-                        return "Du nimmst " + tmpName;
                     }
+
+                    break;
+                }
+            case "1":
+                if(tmpList.size() != 1){
+                    break;
+                }else {
+                    if (wantToTake)
+                        if (character.maxWeight < character.getWeight())
+                            return "du bist überladen.";
+                        else {
+                            character.inventory.add(tmpList.get(0));
+                            tmpName = tmpList.get(0).name;
+                            tmpList.remove(0);
+
+                            wantToTake = false;
+                            return "Du nimmst " + tmpName;
+                        }
+                }
 
 
             case "2":
+                if(tmpList.size() != 2){
+                    break;
+                }else {
                 if(wantToTake)
                     if(character.maxWeight < character.getWeight())
                         return "du bist überladen.";
@@ -192,25 +202,33 @@ public class ChooseMenu {
                         wantToTake = false;
                         return "Du nimmst " + tmpName;
                     }
-            case "3":
-                if(wantToTake)
-                    if(character.maxWeight < character.getWeight())
-                        return "du bist überladen.";
-                    else {
-                        character.inventory.add(tmpList.get(2));
-                        tmpName = tmpList.get(2).name;
-                        tmpList.remove(2);
-                        wantToTake = false;
-                        return "Du nimmst " + tmpName;
                     }
+            case "3":
+                if(tmpList.size() != 3){
+                    break;
+                }else {
+                    if (wantToTake)
+                        if (character.maxWeight < character.getWeight())
+                            return "du bist überladen.";
+                        else {
+                            character.inventory.add(tmpList.get(2));
+                            tmpName = tmpList.get(2).name;
+                            tmpList.remove(2);
+                            wantToTake = false;
+                            return "Du nimmst " + tmpName;
+                        }
+                }
             case "escape" :
                 if(character.getPosition().x == 1 && character.getPosition().y == 4)
 
                 return "Du hast Sachen im wert von " + character.getValue() + "€ erbeutet.";
-                else
-                    return "Du musst dich dafür im Garten befinden.";
+                //else
+                    //return "Du musst dich dafür im Garten befinden.";
 
         }
+
+
+
 
     return "";
     }
