@@ -260,7 +260,8 @@ public class GameMap {
       itemSet = new HashSet<>();
         for (int i = 0; i < tmpIncremnt; i++) {
             int firstChoose = (int) (Math.random() * 10);
-
+            if(roomID == 2)
+            System.out.println(firstChoose + " before");
             if(itemSet.contains(firstChoose)){
 
                 tmpIncremnt++;
@@ -274,16 +275,21 @@ public class GameMap {
                     itemSet.add(realchoice);
                 } else {
                    // firstChoose += (roomID * 100);
+                    if( roomID == 2)
+                    System.out.println(" ds ist firstchoose " + firstChoose);
                     realchoice = firstChoose + (roomID *100);
 
                     itemSet.add(realchoice);
                 }
+                if( roomID == 2)
+                System.out.println("das ist realchoice" + realchoice);
             }
 
 
           //  itemSet.add(firstChoose);
 
         }
+        System.out.println(itemSet);
         return itemSet;
     }
 

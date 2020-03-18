@@ -24,6 +24,7 @@ public class ChooseMenu {
     boolean wantToTake = false;
     String tmpName;
 
+
     public ChooseMenu(PApplet pApplet, Character character, GameMap gameMap){
         this.pApplet = pApplet;
         this.character = character;
@@ -115,17 +116,25 @@ public class ChooseMenu {
                 character.moveCharacter(tmpVec);
                 break;
             case "search":
-                System.out.println("test");
-                System.out.println(character.getPosition());
-                if(character.getPosition().x == 1 && character.getPosition().y == 4){
-                    System.out.println("bdwaidiawjodwa");
-                    return "Du befindest dich im Garten, hier gibt es leider nichts wertvolles.";
+                if(gameMap.getWorldMap().get(character.getPosition()).hasSearched){
+                    return "Du hast diesen Raum bereits durchsucht";
                 }else {
-                    tmpList = gameMap.getWorldMap().get(character.position).itemList;
-                    System.out.println("Als du nach links blickst entdeckst du " + tmpList.get(0).name + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).name + " als letztes fällt dir " +
-                            tmpList.get(2).name + " ins Auge");
-                    return "Als du nach links blickst entdeckst du " + tmpList.get(0).name + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).name + " als letztes fällt dir " +
-                            tmpList.get(2).name + " ins Auge";
+                    gameMap.getWorldMap().get(character.getPosition()).hasSearched = true;
+                    System.out.println("test");
+                    System.out.println(character.getPosition());
+                    if (character.getPosition().x == 1 && character.getPosition().y == 4) {
+                        System.out.println("bdwaidiawjodwa");
+                        return "Du befindest dich im Garten, hier gibt es leider nichts wertvolles.";
+                    } else {
+
+                        tmpList = gameMap.getWorldMap().get(character.position).itemList;
+                        System.out.println(tmpList.size() + " länge tmplist");
+                        System.out.println(tmpList);
+                        System.out.println("Als du nach links blickst entdeckst du " + tmpList.get(0).name + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).name + " als letztes fällt dir " +
+                                tmpList.get(2).name + " ins Auge");
+                        return "Als du nach links blickst entdeckst du " + tmpList.get(0).name + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).name + " als letztes fällt dir " +
+                                tmpList.get(2).name + " ins Auge";
+                    }
                 }
 
             case "take" :

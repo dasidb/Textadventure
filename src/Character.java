@@ -11,7 +11,7 @@ public class Character {
     Set<KeyforDoors> keyList = new HashSet<>();
     List<Item> inventory = new ArrayList();
     int weight = 0;
-    int maxWeight = 3;
+    int maxWeight = 2;
 
     public Character(PVector position){
         this.position = position;

@@ -20,6 +20,7 @@ public abstract class Room {
     final int roomID;
     int storyID = 0;
     List<Item> itemList = new ArrayList<>();
+    boolean hasSearched = false;
 
     public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest) {
         roomID = roomCount;
