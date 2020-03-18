@@ -1,7 +1,6 @@
 import processing.core.PApplet;
 
 
-import processing.core.PApplet;
 import processing.core.PVector;
 import processing.event.KeyEvent;
 import processing.event.MouseEvent;
@@ -14,7 +13,7 @@ public class PlayGameState extends GameState {
     Character character;
     ChooseMenu chooseMenu;
     Story story;
-    String cannotMove = "";
+    String chooseResult = "";
     String currentRoomName = "";
 
 
@@ -45,7 +44,7 @@ public class PlayGameState extends GameState {
     @Override
     protected void doRender() {
         // renders the objects displays text etc
-       // gameMap.render(character.position);
+        gameMap.render(character.position);
         chooseMenu.render();
         checkForNewStory();
         drawCannotMove();
@@ -96,7 +95,7 @@ public class PlayGameState extends GameState {
 
             //Currently bad designed should split it into different methods
             if(key == PApplet.ENTER){
-                cannotMove = chooseMenu.chooseOption(chooseMenu.inputValue);
+                chooseResult = chooseMenu.chooseOption(chooseMenu.inputValue);
         /*        if(!gameMap.getWorldMap().get(character.position).hasNewStory) {
                     if (gameManager.getGameStateMap().containsKey("storyGameState")) {
                         try {
@@ -133,12 +132,12 @@ public class PlayGameState extends GameState {
     }
 
     public void drawCannotMove(){
-        pApplet.text(cannotMove, 50,50);
+        pApplet.text(chooseResult, 50,50, 600,600);
     }
 
 
     public void checkForNewStory(){
-        System.out.println(gameMap.worldMap.get(character.getPosition()).hasNewStory + " das ist new story");
+
         if(gameMap.worldMap.get(character.getPosition()).hasNewStory){
             if (gameManager.getGameStateMap().containsKey("storyGameState")) {
                 gameManager.setCurrentGameState(gameManager.getGameStateMap().get("storyGameState"));

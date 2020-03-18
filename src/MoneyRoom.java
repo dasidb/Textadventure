@@ -1,6 +1,7 @@
 import processing.core.PVector;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MoneyRoom extends Room {
 
@@ -9,7 +10,7 @@ public class MoneyRoom extends Room {
         setImg(Game.getImageMap().get("bathroom"));
     }
 
-    public MoneyRoom(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, ArrayList<Item> itemList){
+    public MoneyRoom(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, List<Item> itemList){
         super(mapCoordinates,roomName,exitNorth,exitEast,exitSouth,exitWest,itemList);
         setImg(Game.getImageMap().get("bathroom"));
     }

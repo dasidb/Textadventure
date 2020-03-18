@@ -37,7 +37,7 @@ public abstract class Room {
 
     }
 
-    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, ArrayList<Item> itemList) {
+    public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, List<Item> itemList) {
         roomID = roomCount;
         roomCount++;
 

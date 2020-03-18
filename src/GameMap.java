@@ -1,23 +1,21 @@
 import processing.core.PApplet;
 import processing.core.PVector;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class GameMap {
     Map<PVector,Room> worldMap = new HashMap<>();
     PApplet pApplet;
     Map<Integer,Item> itemMap = new HashMap<>();
-    Set<Integer> itemSet = new HashSet<>();
+    Set<Integer> itemSet;
 
     public GameMap(PApplet pApplet){
         this.pApplet = pApplet;
         //createGameMap();
         //createManualGameMap();
-        createManualGameMap1();
         createItemMap();
+        createManualGameMap1();
+
     }
 
     public GameMap(){
@@ -158,32 +156,32 @@ public class GameMap {
 
       //2. second room, here you meet 1 to 3 persons, they will drop somehow an item
       tmpvec = new PVector(2,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Flur",true,true,true,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Flur",true,true,true,true, addItemsToRoomList(2)));
 
       //3.  Third room has an Interaction with an item of the 2. Room let you continue to room 5.
       tmpvec = new PVector(2,5);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Wohnzimmer",true,true,false,false));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Wohnzimmer",true,true,false,false, addItemsToRoomList(3)));
 
       //4. fourth room just some story room may continue a riddle
       tmpvec = new PVector(2,3);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Badezimmer",false,false,true,false));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Badezimmer",false,false,true,false, addItemsToRoomList(4)));
 
       //5. fivt room gets opened through a item from the 3. Room has some item
       tmpvec = new PVector(3,5);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Küche",false,false,false,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Küche",false,false,false,true, addItemsToRoomList(5)));
 
       //6. sixt room
       tmpvec = new PVector(3,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Schlafzimmer",false,true,false,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Schlafzimmer",false,true,false,true, addItemsToRoomList(6)));
 
       //7. Seventh room
       tmpvec = new PVector(4,4);
-      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Arbeitszimmer",false,false,false,true));
+      worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Arbeitszimmer",false,false,false,true, addItemsToRoomList(7)));
   }
 
     public void render(PVector characterPosi){
-        drawGameMap(characterPosi);
-        System.out.println(worldMap.size());
+        //drawGameMap(characterPosi);
+
     }
 //test
     public void drawGameMap(PVector characterPosi){
@@ -210,11 +208,11 @@ public class GameMap {
     // Maximal gewicht 35
 
     public void createItemMap(){
-
-      itemMap.put(4,new Item("200€",200,0));
-      itemMap.put(5,new Item("500€",500,0));
-      itemMap.put(6,new Item("Ring",500,1));
-      itemMap.put(7,new Item("Uhr",80,1));
+      itemMap.put(4,new Item("100",100,0));
+      itemMap.put(5,new Item("200€",200,0));
+      itemMap.put(6,new Item("500€",500,0));
+      itemMap.put(7,new Item("Ring",500,1));
+      itemMap.put(8,new Item("Uhr",80,1));
       itemMap.put(9,new Item("Smartphone",600,1));
 
       itemMap.put(200,new Item("Schlüssel",5,1));
@@ -228,6 +226,9 @@ public class GameMap {
         itemMap.put(303,new Item("PS 4", 400,5));
 
         itemMap.put(400,new Item("Klopapier",1337,1));
+        itemMap.put(401,new Item("Klopapier",1337,1));
+        itemMap.put(402,new Item("Klopapier",1337,1));
+        itemMap.put(403,new Item("Klopapier",1337,1));
 
         itemMap.put(500,new Item("Toaster",80,3));
         itemMap.put(501,new Item("Mixxer",90,3));
@@ -239,23 +240,24 @@ public class GameMap {
         itemMap.put(602,new Item("Fernseher",300,20));
         itemMap.put(603,new Item("Laptop", 900,5));
 
-        itemMap.put(300,new Item("Router",200,2));
-        itemMap.put(301,new Item("Computer",800,10));
-        itemMap.put(302,new Item("Schreibtischlampe",300,3));
-        itemMap.put(303,new Item("Geheime Firmendokumente", 2400,1));
+        itemMap.put(700,new Item("Router",200,2));
+        itemMap.put(701,new Item("Computer",800,10));
+        itemMap.put(702,new Item("Schreibtischlampe",300,3));
+        itemMap.put(703,new Item("Geheime Firmendokumente", 2400,1));
 
     }
 
     public static void main(String[] args) {
       GameMap test = new GameMap();
-
-      test.fillRoomList(5);
+    test.createItemMap();
+      test.addItemsToRoomList(5);
     }
 
 
-    public void fillRoomList(int roomID) {
+    public Set<Integer> fillRoomList(int roomID) {
       int realchoice;
       int tmpIncremnt = 3;
+      itemSet = new HashSet<>();
         for (int i = 0; i < tmpIncremnt; i++) {
             int firstChoose = (int) (Math.random() * 10);
 
@@ -268,18 +270,34 @@ public class GameMap {
 
                 if (firstChoose > 3) {
                     realchoice = firstChoose;
-                    System.out.println(realchoice);
+
+                    itemSet.add(realchoice);
                 } else {
                    // firstChoose += (roomID * 100);
                     realchoice = firstChoose + (roomID *100);
-                    System.out.println(realchoice);
+
+                    itemSet.add(realchoice);
                 }
             }
 
 
-            itemSet.add(firstChoose);
+          //  itemSet.add(firstChoose);
 
         }
+        return itemSet;
+    }
+
+    public List<Item> addItemsToRoomList(int roomID){
+      Set<Integer> numbers = fillRoomList(roomID);
+      List<Item> roomItemList = new ArrayList<>();
+
+
+
+        for(Integer itemID : numbers){
+            roomItemList.add(itemMap.get(itemID));
+        }
+
+        return roomItemList;
     }
 
     }

@@ -21,8 +21,8 @@ public class Story {
         String propValue = "[" + roomID + "]" + "[" + storyCount + "]";
         try {
             Properties properties = new Properties();
-            String propertieFieName = "Assets/story.properties";
-            inputStream = new FileInputStream("C:\\Users\\Lukas.kapust\\IdeaProjects\\Textadventure\\Assets\\story");
+            String propertieFieName = "Assets/story";
+            inputStream = new FileInputStream(propertieFieName);
 
 
             if (inputStream != null) {
