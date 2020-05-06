@@ -13,12 +13,13 @@ public class Story {
     boolean storyPartFinished = false;
 
     public Story(){
-
+  //  storyText = "";
     }
 
     // Sets the story String for the Story class
     public void readStoryFromFile(int roomID, int storyCount) throws IOException {
         String propValue = "[" + roomID + "]" + "[" + storyCount + "]";
+        System.out.println(propValue);
         try {
             Properties properties = new Properties();
             String propertieFieName = "Assets/story";

@@ -17,7 +17,7 @@ public abstract class Room {
     Door door;
     boolean hasNewStory = true;
     static int roomCount = 0;
-    final int roomID;
+    int roomID;
     int storyID = 0;
     List<Item> itemList = new ArrayList<>();
     boolean hasSearched = false;
