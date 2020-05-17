@@ -61,6 +61,7 @@ public class PlayGameState extends GameState {
         drawCannotMove();
         displayCurrentRoomName();
         displayCurrentWeight();
+        drawLineCursor();
        // story.render(getProcessing());
 
         //chooseMenu.render();
@@ -89,9 +90,12 @@ public class PlayGameState extends GameState {
     }
 
     public void keyInputs(char key, int keyCode, boolean keyPressed){
+        System.out.println(chooseMenu.getInputValue() + "input");
         if(keyPressed){
 
             if(keyCode !=  PApplet.SHIFT || key != PApplet.BACKSPACE) {
+                if(chooseMenu.getInputValue() == "|")
+                    chooseMenu.setInputValue("");
 
                 chooseMenu.setInputValue(chooseMenu.inputValue + key);
             }
@@ -100,6 +104,10 @@ public class PlayGameState extends GameState {
                 //if((key == PApplet.BACKSPACE && canPress > 30) && chooseMenu.getInputValue().length() >1){
 
                     chooseMenu.setInputValue(chooseMenu.getInputValue().substring(0,chooseMenu.getInputValue().length() - 2));
+                    chooseMenu.setInputValue(chooseMenu.getInputValue().trim());
+                   System.out.println("|" + chooseMenu.getInputValue() + "|");
+
+
 
 
 
@@ -122,6 +130,17 @@ public class PlayGameState extends GameState {
 
             }
 
+        }
+    }
+
+    public void drawLineCursor(){
+        if(chooseMenu.getInputValue() == "" || chooseMenu.getInputValue() == "|") {
+            boolean anzeigen = (System.currentTimeMillis() / 1000) % 2 == 0;
+            if(anzeigen){
+                chooseMenu.setInputValue("|");
+            }else{
+                chooseMenu.setInputValue("");
+            }
         }
     }
 
