@@ -95,6 +95,7 @@ public class ChooseMenu {
         PVector tmpVec = new PVector();
         switch(userchoice) {
             case "move up":
+                setWantToTake(false);
                 tmpVec.x = 0;
                 tmpVec.y = -1;
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitNorth)
@@ -103,6 +104,7 @@ public class ChooseMenu {
                 break;
 
             case "move down":
+                setWantToTake(false);
                 tmpVec.x = 0;
                 tmpVec.y = 1;
                 System.out.println(character.getPosition());
@@ -112,6 +114,7 @@ public class ChooseMenu {
                 break;
 
             case "move left":
+                setWantToTake(false);
                 tmpVec.x = -1;
                 tmpVec.y = 0;
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitWest)
@@ -120,6 +123,7 @@ public class ChooseMenu {
                 break;
 
             case "move right":
+                setWantToTake(false);
                 tmpVec.x = 1;
                 tmpVec.y = 0;
                 if(!gameMap.getWorldMap().get(character.getPosition()).exitEast)
@@ -128,6 +132,7 @@ public class ChooseMenu {
                 break;
 
             case "search":
+                setWantToTake(false);
                 if(gameMap.getWorldMap().get(character.getPosition()).hasSearched){
                     return "Du hast diesen Raum bereits durchsucht";
                 }else {
@@ -142,6 +147,7 @@ public class ChooseMenu {
                 }
 
             case "take":
+
                     if(character.getPosition().x == 1 && character.getPosition().y == 4) {
                        return  "Hier gibt es einfach nichts.";
                     }else {
@@ -166,7 +172,7 @@ public class ChooseMenu {
 
                     takeitem2 = tmpList.get(1).name;
                     takeitem3 = tmpList.get(2).name; */
-
+                                tmpList = gameMap.getWorldMap().get(character.position).itemList;
                                 for (Item item : tmpList) {
                                     takeList.add(item.name);
                                 }
@@ -226,6 +232,7 @@ public class ChooseMenu {
                         }
 
             case "escape" :
+                setWantToTake(false);
                 if(character.getPosition().x == 1 && character.getPosition().y == 4) {
                     character.getInventoryValue();
                     return "Du hast Sachen im wert von " + character.calculateInventoryValue() + "€ erbeutet.";
