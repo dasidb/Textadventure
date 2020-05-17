@@ -134,6 +134,7 @@ public class PlayGameState extends GameState {
     }
 
     public void drawLineCursor(){
+        //hier
         if(chooseMenu.getInputValue() == "" || chooseMenu.getInputValue() == "|") {
             boolean anzeigen = (System.currentTimeMillis() / 1000) % 2 == 0;
             if(anzeigen){
@@ -141,6 +142,7 @@ public class PlayGameState extends GameState {
             }else{
                 chooseMenu.setInputValue("");
             }
+
         }
     }
 
