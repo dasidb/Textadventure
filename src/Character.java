@@ -12,7 +12,16 @@ public class Character {
     List<Item> inventory = new ArrayList();
     int weight = 0;
     int maxWeight = 35;
+    int timesWeightUpgraded = 0;
     int money = 0;
+
+    public int getTimesWeightUpgraded() {
+        return timesWeightUpgraded;
+    }
+
+    public void setTimesWeightUpgraded(int timesWeightUpgraded) {
+        this.timesWeightUpgraded = timesWeightUpgraded;
+    }
 
     public int getMaxWeight() {
         return maxWeight;
@@ -73,6 +82,14 @@ public class Character {
         return tmpWeight;
     }
 
+    public int calculateInventoryValue(){
+        int tmpValue = 0;
+        for(Item item : inventory){
+            tmpValue += item.value;
+        }
+        return tmpValue;
+    }
+
     public int getWeight() {
         return calculateWeight();
     }
@@ -82,7 +99,7 @@ public class Character {
     }
 
     public int calculateValue(){
-        int tmpValue = 0;
+        int tmpValue = getMoney();
         for(Item item : inventory){
             tmpValue += item.value;
         }

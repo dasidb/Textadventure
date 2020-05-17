@@ -52,7 +52,10 @@ public class PlayGameState extends GameState {
     @Override
     protected void doRender() {
         // renders the objects displays text etc
+        if(Game.admin)
         gameMap.render(character.position);
+
+
         chooseMenu.render();
         checkForNewStory();
         drawCannotMove();

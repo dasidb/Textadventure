@@ -22,7 +22,13 @@ public class Story {
         System.out.println(propValue);
         try {
             Properties properties = new Properties();
-            String propertieFieName = "Assets/story";
+            String propertieFieName;
+            if(Game.admin) {
+                 propertieFieName = "Assets/storyAdmin";
+            }
+            else {
+                 propertieFieName = "Assets/story";
+            }
             inputStream = new FileInputStream(propertieFieName);
 
 

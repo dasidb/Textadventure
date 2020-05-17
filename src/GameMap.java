@@ -170,7 +170,7 @@ public class GameMap {
   }
 
     public void render(PVector characterPosi){
-        //drawGameMap(characterPosi);
+        drawGameMap(characterPosi);
 
     }
 //test

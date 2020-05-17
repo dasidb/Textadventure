@@ -2,6 +2,7 @@ import processing.core.PApplet;
 import processing.core.PVector;
 import processing.event.KeyEvent;
 
+import javax.security.sasl.SaslServer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,15 +12,18 @@ public class UpgradeMenuGameState extends GameState {
     Character character;
     int choice = 0;
     boolean successfullUpgrade;
+    int timesWeightUpgrade = 0;
     int weightUpgradeCost = 500;
     String upgradeMsg = "";
     long test;
-    int timesWeightUpgrade = 0;
+
 
 
     public UpgradeMenuGameState(PApplet pApplet, GameManager manager, Character character){
         super(pApplet, manager);
         this.character = character;
+        timesWeightUpgrade = character.timesWeightUpgraded;
+
         init();
     }
     @Override
@@ -32,7 +36,9 @@ public class UpgradeMenuGameState extends GameState {
         }
 
         keyInstructions();
+        System.out.println(character.timesWeightUpgraded);
     }
+
 
     @Override
     protected void doUpdate(long tpf) {
@@ -67,7 +73,7 @@ public class UpgradeMenuGameState extends GameState {
         }
         else
             pApplet.fill(255,255,255);
-        pApplet.text("Mehr Gewicht aktuell " + character.getMaxWeight() + " Das Upgrade Kostet " + weightUpgradeCost +"€" , 200, 240);
+        pApplet.text("Mehr Gewicht aktuell " + character.getMaxWeight() + " Das Upgrade Kostet " + (weightUpgradeCost + (character.getTimesWeightUpgraded() * 250)) + "€" , 200, 240);
 
         if(choice == 1){
             pApplet.fill(255,0,0);
@@ -98,15 +104,17 @@ public class UpgradeMenuGameState extends GameState {
             if (pApplet.key == pApplet.ENTER) {
                 System.out.println(choice);
                 if (choice == 0 ) {
-                    if(character.getMoney() >= weightUpgradeCost) {
+                    if(character.getMoney() >= weightUpgradeCost + (character.getTimesWeightUpgraded()*250)) {
                         successfullUpgrade = character.upgradeWeight(5);
-                        timesWeightUpgrade++;
+
+
 
                         successfullUpgrade();
                         if (successfullUpgrade) {
-                            character.setMoney(character.getMoney() - weightUpgradeCost);
-                            weightUpgradeCost = increaseUpgradeCost(weightUpgradeCost);
-
+                            character.setMoney(character.getMoney() - (weightUpgradeCost + (character.getTimesWeightUpgraded() * 250)));
+                            //weightUpgradeCost = increaseUpgradeCost(weightUpgradeCost);
+                            character.setTimesWeightUpgraded(character.getTimesWeightUpgraded() + 1);
+                            timesWeightUpgrade++;
                         }
                     }else
                         notEnoughMoney();
@@ -138,18 +146,24 @@ public class UpgradeMenuGameState extends GameState {
     public void startNewGame(){
         Room.roomCount = 0;
         MoneyRoom.roomCount = 0;
+        timesWeightUpgrade = character.getTimesWeightUpgraded();
+        int tmpMoney = character.getMoney();
+        System.out.println(tmpMoney + " das ist tmpmoney");
 
         gameManager.getGameStateMap().put("storyGameState",new StoryGameState(getProcessing(),gameManager));
         Room.roomCount = 0;
         MoneyRoom.roomCount = 0;
-    gameManager.setCurrentGameState(new PlayGameState(getProcessing(),gameManager));
+        PlayGameState newerGameState = new PlayGameState(getProcessing(),gameManager);
+        gameManager.gameStateMap.put("playGameState", newerGameState);
+        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("playGameState"));
         Room.roomCount = 0;
         MoneyRoom.roomCount = 0;
         ((PlayGameState) gameManager.getCurrentGameState()).gameMap.setWorldMap(new HashMap<PVector,Room>());
         ((PlayGameState) gameManager.getCurrentGameState()).gameMap.createManualGameMap1();
         ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setInventory(new ArrayList<Item>());
-        ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setMaxWeight(timesWeightUpgrade*5);
-
+        ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setMaxWeight(35 + timesWeightUpgrade*5);
+        ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setTimesWeightUpgraded(timesWeightUpgrade);
+        ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setMoney(tmpMoney);
     }
     public void keyInstructions(){
         pApplet.fill(255,255,255);

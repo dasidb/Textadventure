@@ -226,9 +226,10 @@ public class ChooseMenu {
                         }
 
             case "escape" :
-                if(character.getPosition().x == 1 && character.getPosition().y == 4)
-
-                return "Du hast Sachen im wert von " + character.getInventoryValue() + "€ erbeutet.";
+                if(character.getPosition().x == 1 && character.getPosition().y == 4) {
+                    character.getInventoryValue();
+                    return "Du hast Sachen im wert von " + character.calculateInventoryValue() + "€ erbeutet.";
+                }
         }
     return "";
     }

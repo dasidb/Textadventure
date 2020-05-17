@@ -17,6 +17,7 @@ public class Game extends PApplet {
     int canPress = 0;
     int canPress1;
     GameManager gameManager;
+    static boolean admin = true;
 
     public static void main(String[] args) {
     PApplet.main(Game.class, args);
