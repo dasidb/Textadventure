@@ -5,6 +5,9 @@ import processing.core.PVector;
 import processing.event.KeyEvent;
 import processing.event.MouseEvent;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 public class PlayGameState extends GameState {
 
@@ -15,6 +18,7 @@ public class PlayGameState extends GameState {
     Story story;
     String chooseResult = "";
     String currentRoomName = "";
+    ArrayList<Enemy> enemyArrayList;
 
     public Character getCharacter() {
         return character;
@@ -38,6 +42,9 @@ public class PlayGameState extends GameState {
         chooseMenu = new ChooseMenu(getProcessing(),character,gameMap);
         //story = new Story();
         System.out.println(character + " playgame");
+        Enemy enemy = new SleepingPersonEnemy();
+        enemyArrayList = new ArrayList<>();
+        enemyArrayList.add(enemy);
 
 
 
@@ -46,6 +53,12 @@ public class PlayGameState extends GameState {
     @Override
     protected void doUpdate(long tpf) {
     pApplet.clear();
+    if(checkForWakeup()){
+
+        gameManager.getGameStateMap().put("fightGameState", new FightGameState(getProcessing(),gameManager));
+        gameManager.setCurrentGameState(gameManager.getGameStateMap().get("fightGameState"));
+    }
+
 
     }
 
@@ -183,5 +196,21 @@ public class PlayGameState extends GameState {
     public void displayCurrentWeight(){
         pApplet.text("Du hast aktuell ein Gewicht von " + character.getWeight() + " Kilo dabei.",600,600,200,200);
     }
+
+    public boolean checkForWakeup(){
+        for(Enemy enemy : enemyArrayList) {
+            for (Item item : character.getInventory()) {
+
+                if(item.name.equals(" ein Kuscheltier")) {
+                    enemy.getWakeupBehaviour().wakeup();
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+
 
 }

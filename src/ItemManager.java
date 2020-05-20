@@ -38,7 +38,7 @@ public class ItemManager {
         itemMap.put(503,new Item(" Mikrowelle", 60,10));
 
         itemMap.put(600,new Item(" ein Lottoschein",1,1));
-        itemMap.put(601,new Item(" ein Spielzeug",30,2));
+        itemMap.put(601,new Item(" ein Kuscheltier",30,2));
         itemMap.put(602,new Item(" ein Fernseher",300,20));
         itemMap.put(603,new Item(" ein Laptop", 900,5));
 
