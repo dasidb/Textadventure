@@ -1,5 +1,5 @@
 public class KeyforDoors {
-    int keyID;
+    private int keyID;
 
     public int getKeyID() {
         return keyID;

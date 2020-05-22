@@ -6,8 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameManager {
-    GameState currentGameState;
-    Map<String, GameState> gameStateMap = new HashMap();
+    private GameState currentGameState;
+    private Map<String, GameState> gameStateMap = new HashMap();
 
     public GameManager(){
     }

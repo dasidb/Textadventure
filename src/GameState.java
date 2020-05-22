@@ -6,11 +6,11 @@ import processing.event.MouseEvent;
 
 // Shows if the game is in "game" mode or "intro, sequence" mode
 public abstract class GameState {
-    GameManager gameManager;
-    PApplet pApplet;
+    protected GameManager gameManager;
+    protected PApplet pApplet;
 
-    long lastFrameTime = System.currentTimeMillis();
-    long tpf = 0;
+    protected long lastFrameTime = System.currentTimeMillis();
+    protected long tpf = 0;
 
 
 

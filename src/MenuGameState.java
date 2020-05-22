@@ -3,8 +3,8 @@ import processing.event.KeyEvent;
 
 public class MenuGameState extends GameState {
 
-    int selection = 0;
-    boolean thereIsNoQuit = false;
+    private int selection = 0;
+    private boolean thereIsNoQuit = false;
 
     public MenuGameState(PApplet pApplet, GameManager manager) {
         super(pApplet, manager);

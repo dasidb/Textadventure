@@ -1,10 +1,10 @@
 import processing.core.PVector;
 
 public class Enemy {
-    PVector positíon;
-    String name;
-    boolean isSleeping = true;
-    WakeupBehaviour wakeupBehaviour;
+    private PVector positíon;
+    private String name;
+    private boolean isSleeping = true;
+    private WakeupBehaviour wakeupBehaviour;
 
 
     public void setWakeupBehaviour(WakeupBehaviour wakeupBehaviour){

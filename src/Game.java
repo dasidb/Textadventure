@@ -9,15 +9,15 @@ import java.util.Map;
 
 public class Game extends PApplet {
 
-    GameMap gameMap;
-    static Map<String, PImage> imageMap;
-    PImage img;
-    Character character;
-    ChooseMenu chooseMenu;
-    int canPress = 0;
-    int canPress1;
-    GameManager gameManager;
-    static boolean admin = true;
+    private GameMap gameMap;
+    private static Map<String, PImage> imageMap;
+    private PImage img;
+    private Character character;
+    private ChooseMenu chooseMenu;
+    private int canPress = 0;
+    private int canPress1;
+    private GameManager gameManager;
+    private static boolean admin = true;
 
     public static void main(String[] args) {
     PApplet.main(Game.class, args);
@@ -32,6 +32,14 @@ public class Game extends PApplet {
 
     size(800,800);
 
+    }
+
+    public static boolean isAdmin() {
+        return admin;
+    }
+
+    public static void setAdmin(boolean admin) {
+        Game.admin = admin;
     }
 
     @Override

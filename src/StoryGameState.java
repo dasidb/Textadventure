@@ -3,8 +3,8 @@ import processing.core.PVector;
 import processing.event.KeyEvent;
 
 public class StoryGameState extends GameState {
-    Story story;
-    String currentStory ="";
+    private  Story story;
+    private  String currentStory ="";
 
     public StoryGameState(PApplet pApplet, GameManager gameManager, String currentStory){
         super(pApplet,gameManager);
@@ -38,10 +38,10 @@ public class StoryGameState extends GameState {
         super.keyPressed(event);
 
 
-        if(story.storyPartFinished && pApplet.key == pApplet.ENTER){
-        story.delayedStory = "";
+        if(story.isStoryPartFinished() && pApplet.key == pApplet.ENTER){
+        story.setDelayedStory("");
         gameManager.setCurrentGameState(gameManager.getGameStateMap().get("playGameState"));
-        story.storyPartFinished = false;
+        story.setStoryPartFinished(false);
 
         }
     }

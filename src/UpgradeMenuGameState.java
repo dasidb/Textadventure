@@ -9,20 +9,20 @@ import java.util.Map;
 
 public class UpgradeMenuGameState extends GameState {
 
-    Character character;
-    int choice = 0;
-    boolean successfullUpgrade;
-    int timesWeightUpgrade = 0;
-    int weightUpgradeCost = 500;
-    String upgradeMsg = "";
-    long test;
+    private Character character;
+    private int choice = 0;
+    private boolean successfullUpgrade;
+    private int timesWeightUpgrade = 0;
+    private int weightUpgradeCost = 500;
+    private String upgradeMsg = "";
+    private long test;
 
 
 
     public UpgradeMenuGameState(PApplet pApplet, GameManager manager, Character character){
         super(pApplet, manager);
         this.character = character;
-        timesWeightUpgrade = character.timesWeightUpgraded;
+        timesWeightUpgrade = character.getTimesWeightUpgraded();
 
         init();
     }
@@ -36,7 +36,7 @@ public class UpgradeMenuGameState extends GameState {
         }
 
         keyInstructions();
-        System.out.println(character.timesWeightUpgraded);
+        System.out.println(character.getTimesWeightUpgraded());
     }
 
 
@@ -144,22 +144,22 @@ public class UpgradeMenuGameState extends GameState {
         test = System.currentTimeMillis();
     }
     public void startNewGame(){
-        Room.roomCount = 0;
-        MoneyRoom.roomCount = 0;
+        Room.setRoomCount(0);
+        MoneyRoom.setRoomCount(0);
         timesWeightUpgrade = character.getTimesWeightUpgraded();
         int tmpMoney = character.getMoney();
         System.out.println(tmpMoney + " das ist tmpmoney");
 
         gameManager.getGameStateMap().put("storyGameState",new StoryGameState(getProcessing(),gameManager));
-        Room.roomCount = 0;
-        MoneyRoom.roomCount = 0;
+        Room.setRoomCount(0);
+        MoneyRoom.setRoomCount(0);
         PlayGameState newerGameState = new PlayGameState(getProcessing(),gameManager);
-        gameManager.gameStateMap.put("playGameState", newerGameState);
+        gameManager.getGameStateMap().put("playGameState", newerGameState);
         gameManager.setCurrentGameState(gameManager.getGameStateMap().get("playGameState"));
-        Room.roomCount = 0;
-        MoneyRoom.roomCount = 0;
-        ((PlayGameState) gameManager.getCurrentGameState()).gameMap.setWorldMap(new HashMap<PVector,Room>());
-        ((PlayGameState) gameManager.getCurrentGameState()).gameMap.createManualGameMap1();
+        Room.setRoomCount(0);
+        MoneyRoom.setRoomCount(0);
+        ((PlayGameState) gameManager.getCurrentGameState()).getGameMap().setWorldMap(new HashMap<PVector,Room>());
+        ((PlayGameState) gameManager.getCurrentGameState()).getGameMap().createManualGameMap1();
         ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setInventory(new ArrayList<Item>());
         ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setMaxWeight(35 + timesWeightUpgrade*5);
         ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setTimesWeightUpgraded(timesWeightUpgrade);

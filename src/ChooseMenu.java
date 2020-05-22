@@ -5,25 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseMenu {
-    PApplet pApplet;
-    String choice1 = "Move Up";
-    String choice2 = "Move Down";
-    String choice3 = "Move Left";
-    String choice4 = "Move Right";
-    String choice5 = "Search";
-    String choice6 = "Take";
-    String choiceEscape = "Escape";
-    String takeInstruction = " Zum Auswählen die Zahlen 1, 2 oder 3 eingeben.";
-    String inputValue = "";
-    List<String> takeList = new ArrayList<>();
-    String takeItem1 = "";
-    String takeitem2 = "";
-    String takeitem3 ="";
-    Character character;
-    GameMap gameMap;
-    List<Item> tmpList;
-    boolean wantToTake = false;
-    String tmpName;
+    private PApplet pApplet;
+    private String choice1 = "Move Up";
+    private String choice2 = "Move Down";
+    private String choice3 = "Move Left";
+    private String choice4 = "Move Right";
+    private String choice5 = "Search";
+    private String choice6 = "Take";
+    private String choiceEscape = "Escape";
+    private String takeInstruction = " Zum Auswählen die Zahlen 1, 2 oder 3 eingeben.";
+    private String inputValue = "";
+    private List<String> takeList = new ArrayList<>();
+    private String takeItem1 = "";
+    private String takeitem2 = "";
+    private String takeitem3 ="";
+    private Character character;
+    private GameMap gameMap;
+    private List<Item> tmpList;
+    private boolean wantToTake = false;
+    private String tmpName;
 
 
 
@@ -42,6 +42,10 @@ public class ChooseMenu {
         this.gameMap = gameMap;
     }
 
+    public ChooseMenu(PApplet pApplet){
+        this.pApplet = pApplet;
+    }
+
     public String getInputValue() {
         return inputValue;
     }
@@ -54,12 +58,13 @@ public class ChooseMenu {
     public void render(){
         drawChoices();
     }
-
+// needs a refactor maybe deliver it an array of choices with position to display the stuff
     public void drawChoices(){
         pApplet.textSize(16);
 
         pApplet.fill(255,255,255);
         if(!wantToTake) {
+            pApplet.textSize(16);
             pApplet.text(choice1, 600, 30);
             pApplet.text(choice2, 600, 60);
             pApplet.text(choice3, 600, 90);
@@ -88,7 +93,7 @@ public class ChooseMenu {
     }
 
     public String chooseOption(String choiceSelected){
-        System.out.println(character.inventory);
+        System.out.println(character.getInventory());
         System.out.println(character.getWeight());
         String userchoice = choiceSelected.toLowerCase();
         userchoice = userchoice.replace("\n", "");
@@ -98,7 +103,7 @@ public class ChooseMenu {
                 setWantToTake(false);
                 tmpVec.x = 0;
                 tmpVec.y = -1;
-                if(!gameMap.getWorldMap().get(character.getPosition()).exitNorth)
+                if(!gameMap.getWorldMap().get(character.getPosition()).isExitNorth())
                     return "Du kannst nicht nach Norden gehen";
                 character.moveCharacter(tmpVec);
                 break;
@@ -108,7 +113,7 @@ public class ChooseMenu {
                 tmpVec.x = 0;
                 tmpVec.y = 1;
                 System.out.println(character.getPosition());
-                if(!gameMap.getWorldMap().get(character.getPosition()).exitSouth)
+                if(!gameMap.getWorldMap().get(character.getPosition()).isExitSouth())
                     return "Du kannst nicht nach Süden gehen";
                 character.moveCharacter(tmpVec);
                 break;
@@ -117,7 +122,7 @@ public class ChooseMenu {
                 setWantToTake(false);
                 tmpVec.x = -1;
                 tmpVec.y = 0;
-                if(!gameMap.getWorldMap().get(character.getPosition()).exitWest)
+                if(!gameMap.getWorldMap().get(character.getPosition()).isExitWest())
                     return "Du kannst nicht nach Westen gehen";
                 character.moveCharacter(tmpVec);
                 break;
@@ -126,23 +131,23 @@ public class ChooseMenu {
                 setWantToTake(false);
                 tmpVec.x = 1;
                 tmpVec.y = 0;
-                if(!gameMap.getWorldMap().get(character.getPosition()).exitEast)
+                if(!gameMap.getWorldMap().get(character.getPosition()).isExitEast())
                     return "Du kannst nicht nach Osten gehen";
                 character.moveCharacter(tmpVec);
                 break;
 
             case "search":
                 setWantToTake(false);
-                if(gameMap.getWorldMap().get(character.getPosition()).hasSearched){
+                if(gameMap.getWorldMap().get(character.getPosition()).isHasSearched()){
                     return "Du hast diesen Raum bereits durchsucht";
                 }else {
-                    gameMap.getWorldMap().get(character.getPosition()).hasSearched = true;
+                    gameMap.getWorldMap().get(character.getPosition()).setHasSearched(true);
                     if (character.getPosition().x == 1 && character.getPosition().y == 4) {
                         return "Du befindest dich im Garten, hier gibt es leider nichts wertvolles.";
                     } else {
-                        tmpList = gameMap.getWorldMap().get(character.position).itemList;
-                        return "Als du nach links blickst entdeckst du " + tmpList.get(0).name + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).name + " als letztes fällt dir " +
-                                tmpList.get(2).name + " ins Auge";
+                        tmpList = gameMap.getWorldMap().get(character.getPosition()).getItemList();
+                        return "Als du nach links blickst entdeckst du " + tmpList.get(0).getName() + " dein blick schweift weiter und du entdeckst " + tmpList.get(1).getName() + " als letztes fällt dir " +
+                                tmpList.get(2).getName() + " ins Auge";
                     }
                 }
 
@@ -152,7 +157,7 @@ public class ChooseMenu {
                        return  "Hier gibt es einfach nichts.";
                     }else {
 
-                        if (!gameMap.getWorldMap().get(character.getPosition()).hasSearched) {
+                        if (!gameMap.getWorldMap().get(character.getPosition()).isHasSearched()) {
                             return "Du musst den Raum erst durchsuchen";
                         } else if (tmpList.size() == 0) {
                             return "Es gibt nichts mehr zum suchen.";
@@ -172,9 +177,9 @@ public class ChooseMenu {
 
                     takeitem2 = tmpList.get(1).name;
                     takeitem3 = tmpList.get(2).name; */
-                                tmpList = gameMap.getWorldMap().get(character.position).itemList;
+                                tmpList = gameMap.getWorldMap().get(character.getPosition()).getItemList();
                                 for (Item item : tmpList) {
-                                    takeList.add(item.name);
+                                    takeList.add(item.getName());
                                 }
 
                             }
@@ -185,12 +190,12 @@ public class ChooseMenu {
 
             case "1":
                     if (wantToTake)
-                        if (character.maxWeight < character.getWeight())
+                        if (character.getMaxWeight() < character.getWeight())
                             return "Du bist überladen. Es ist an der Zeit zu verschwinden.";
                         else {
                             try {
-                            character.inventory.add(tmpList.get(0));
-                            tmpName = tmpList.get(0).name;
+                            character.getInventory().add(tmpList.get(0));
+                            tmpName = tmpList.get(0).getName();
                             tmpList.remove(0);
                             setWantToTake(false);
                             return "Du nimmst " + tmpName;
@@ -201,12 +206,12 @@ public class ChooseMenu {
 
             case "2":
                 if(wantToTake)
-                    if(character.maxWeight < character.getWeight())
+                    if(character.getMaxWeight() < character.getWeight())
                         return "Du bist überladen. Es ist an der Zeit zu verschwinden.";
                     else {
                         try {
-                        character.inventory.add(tmpList.get(1));
-                        tmpName = tmpList.get(1).name;
+                        character.getInventory().add(tmpList.get(1));
+                        tmpName = tmpList.get(1).getName();
                         tmpList.remove(1);
                         setWantToTake(false);
                         return "Du nimmst " + tmpName;
@@ -217,12 +222,12 @@ public class ChooseMenu {
                     }
             case "3":
                     if (wantToTake)
-                        if (character.maxWeight < character.getWeight())
+                        if (character.getMaxWeight() < character.getWeight())
                             return "Du bist überladen. Es ist an der Zeit zu verschwinden.";
                         else {
                             try {
-                                character.inventory.add(tmpList.get(2));
-                                tmpName = tmpList.get(2).name;
+                                character.getInventory().add(tmpList.get(2));
+                                tmpName = tmpList.get(2).getName();
                                 tmpList.remove(2);
                                 setWantToTake(false);
                                 return "Du nimmst " + tmpName;

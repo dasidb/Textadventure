@@ -31,12 +31,12 @@
 
 
 
-[5][0] = "Uhh, das Schlafzimmer. Hier gibt es sicherlich einiges zu holen. " 
+[5][0] = "Uhh, das Schlafzimmer. Hier gibt es sicherlich einiges zu holen. Allerdings musst du leise sein, damit du den Schlafenden Mann nicht weckst. " 
 
 [5][1] = "Hier steht die zweite Story des Schlafzimmers." 
 
 
 
-[6][0] = "Du befindest dich jetzt im Arbeitszimmer. Wenn hier mal nicht ein paar geheime Unterlagen versteckt sind. Aber wie sollte man die wichtigen von den unwichtigen unterscheiden. Derjenige, der hier arbeitet, hat bei Weitem kein Verständnis für Ordnung. Auf jeder Ablagefläche liegen Unterlagen wirr gestapelt.” 
+[6][0] = "Du betritst den Raum und entdeckst als erstes den schnarchenden Hund du solltest also besonders vorsichtig sein. Als du dich genauer umsiehst stellt sich herraus das du dich im Arbeitszimmer befindest. Wenn hier mal nicht ein paar geheime Unterlagen versteckt sind. Aber wie sollte man die wichtigen von den unwichtigen unterscheiden. Derjenige, der hier arbeitet, hat bei Weitem kein Verständnis für Ordnung. Auf jeder Ablagefläche liegen Unterlagen wirr gestapelt.” 
 
 [6][1] = "Hier steht die zweite Story des Arbeitszimmers." 

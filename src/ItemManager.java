@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class ItemManager {
-    Map<Integer, Item> itemMap;
-    Set<Integer> itemSet;
+    private Map<Integer, Item> itemMap;
+    private Set<Integer> itemSet;
 
     public ItemManager(){
         itemMap = new HashMap<>();

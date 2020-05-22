@@ -5,15 +5,63 @@ import java.util.Properties;
 
 public class Story {
 
-    String storyText = "kfewafflkmfwflkmfelkmflkmfewlkmfewlkmfewlkmfewlkmlkmfewlkmfewlkmfewlkm";
-    InputStream inputStream;
-    String delayedStory = "";
-    int counter = 0;
-    int storyStringLength = 0;
-    boolean storyPartFinished = false;
+    private String storyText = "kfewafflkmfwflkmfelkmflkmfewlkmfewlkmfewlkmfewlkmlkmfewlkmfewlkmfewlkm";
+    private InputStream inputStream;
+    private String delayedStory = "";
+    private int counter = 0;
+    private  int storyStringLength = 0;
+    private  boolean storyPartFinished = false;
 
     public Story(){
   //  storyText = "";
+    }
+
+    public boolean isStoryPartFinished() {
+        return storyPartFinished;
+    }
+
+    public String getStoryText() {
+        return storyText;
+    }
+
+    public void setStoryText(String storyText) {
+        this.storyText = storyText;
+    }
+
+    public InputStream getInputStream() {
+        return inputStream;
+    }
+
+    public void setInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
+    }
+
+    public String getDelayedStory() {
+        return delayedStory;
+    }
+
+    public void setDelayedStory(String delayedStory) {
+        this.delayedStory = delayedStory;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public int getStoryStringLength() {
+        return storyStringLength;
+    }
+
+    public void setStoryStringLength(int storyStringLength) {
+        this.storyStringLength = storyStringLength;
+    }
+
+    public void setStoryPartFinished(boolean storyPartFinished) {
+        this.storyPartFinished = storyPartFinished;
     }
 
     // Sets the story String for the Story class
@@ -23,7 +71,7 @@ public class Story {
         try {
             Properties properties = new Properties();
             String propertieFieName;
-            if(Game.admin) {
+            if(Game.isAdmin()) {
                  propertieFieName = "Assets/storyAdmin";
             }
             else {

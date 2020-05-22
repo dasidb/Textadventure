@@ -5,23 +5,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Room {
-    PVector mapCoordinates;
-    String roomName;
-    boolean exitNorth;
-    boolean exitEast;
-    boolean exitSouth;
-    boolean exitWest;
-    boolean hasCharacter = false;
-    PImage img;
-    KeyforDoors keyforDoors;
-    Door door;
-    boolean hasNewStory = true;
-    static int roomCount = 0;
-    int roomID;
-    int storyID = 0;
-    List<Item> itemList = new ArrayList<>();
-    boolean hasSearched = false;
-    boolean canEscape;
+    private PVector mapCoordinates;
+    private String roomName;
+    private boolean exitNorth;
+    private boolean exitEast;
+    private boolean exitSouth;
+    private boolean exitWest;
+    private boolean hasCharacter = false;
+    private PImage img;
+    private KeyforDoors keyforDoors;
+    private Door door;
+    private boolean hasNewStory = true;
+    private static int roomCount = 0;
+    private int roomID;
+    private int storyID = 0;
+    private List<Item> itemList = new ArrayList<>();
+    private boolean hasSearched = false;
+    private boolean canEscape;
 
     public Room(PVector mapCoordinates, String roomName, boolean exitNorth, boolean exitEast, boolean exitSouth, boolean exitWest, boolean canEscape) {
         roomID = roomCount;
@@ -107,6 +107,74 @@ public abstract class Room {
         this.exitWest = exitWest;
         this.door = door;
 
+    }
+
+    public List<Item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<Item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public boolean isExitNorth() {
+        return exitNorth;
+    }
+
+    public void setExitNorth(boolean exitNorth) {
+        this.exitNorth = exitNorth;
+    }
+
+    public boolean isHasSearched() {
+        return hasSearched;
+    }
+
+    public void setHasSearched(boolean hasSearched) {
+        this.hasSearched = hasSearched;
+    }
+
+    public boolean isExitEast() {
+        return exitEast;
+    }
+
+    public void setExitEast(boolean exitEast) {
+        this.exitEast = exitEast;
+    }
+
+    public boolean isExitSouth() {
+        return exitSouth;
+    }
+
+    public void setExitSouth(boolean exitSouth) {
+        this.exitSouth = exitSouth;
+    }
+
+    public boolean isExitWest() {
+        return exitWest;
+    }
+
+    public void setExitWest(boolean exitWest) {
+        this.exitWest = exitWest;
+    }
+
+    public static void setRoomCount(int roomCount) {
+        Room.roomCount = roomCount;
+    }
+
+    public int getRoomID() {
+        return roomID;
+    }
+
+    public void setRoomID(int roomID) {
+        this.roomID = roomID;
     }
 
     public boolean isHasNewStory() {

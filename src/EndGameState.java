@@ -3,7 +3,7 @@ import processing.event.KeyEvent;
 
 public class EndGameState extends GameState{
 
-    String result ="";
+    private String result ="";
     public EndGameState(PApplet pApplet, GameManager gameManager, String result){
         super(pApplet,gameManager);
         this.result = result;

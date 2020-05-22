@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Set;
 
 public class Character {
-    PVector position;
-    String name;
-    Set<KeyforDoors> keyList = new HashSet<>();
-    List<Item> inventory = new ArrayList();
-    int weight = 0;
-    int maxWeight = 35;
-    int timesWeightUpgraded = 0;
-    int money = 0;
+    private PVector position;
+    private String name;
+    private Set<KeyforDoors> keyList = new HashSet<>();
+    private List<Item> inventory = new ArrayList();
+    private int weight = 0;
+    private int maxWeight = 35;
+    private int timesWeightUpgraded = 0;
+    private int money = 0;
 
     public int getTimesWeightUpgraded() {
         return timesWeightUpgraded;
@@ -77,7 +77,7 @@ public class Character {
     public int calculateWeight(){
         int tmpWeight = 0;
         for(Item item : inventory){
-            tmpWeight += item.weight;
+            tmpWeight += item.getWeight();
         }
         return tmpWeight;
     }
@@ -85,7 +85,7 @@ public class Character {
     public int calculateInventoryValue(){
         int tmpValue = 0;
         for(Item item : inventory){
-            tmpValue += item.value;
+            tmpValue += item.getValue();
         }
         return tmpValue;
     }
@@ -101,7 +101,7 @@ public class Character {
     public int calculateValue(){
         int tmpValue = getMoney();
         for(Item item : inventory){
-            tmpValue += item.value;
+            tmpValue += item.getValue();
         }
         setMoney(tmpValue);
         return tmpValue;

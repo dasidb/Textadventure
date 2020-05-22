@@ -4,11 +4,11 @@ import processing.core.PVector;
 import java.util.*;
 
 public class GameMap {
-    Map<PVector,Room> worldMap = new HashMap<>();
-    PApplet pApplet;
-    Map<Integer,Item> itemMap = new HashMap<>();
-    Set<Integer> itemSet;
-    ItemManager itemManager;
+    private Map<PVector,Room> worldMap = new HashMap<>();
+    private PApplet pApplet;
+    private Map<Integer,Item> itemMap = new HashMap<>();
+    private Set<Integer> itemSet;
+    private ItemManager itemManager;
 
     public GameMap(PApplet pApplet){
         this.pApplet = pApplet;
@@ -177,15 +177,15 @@ public class GameMap {
     public void drawGameMap(PVector characterPosi){
       int displayFactor = 100;
         for(Map.Entry<PVector,Room> entry : worldMap.entrySet()){
-            if(entry.getValue().hasNewStory)
-            pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
+            if(entry.getValue().isHasNewStory())
+            pApplet.image(entry.getValue().getImg(), (entry.getValue().getMapCoordinates().x * displayFactor), displayFactor + (entry.getValue().getMapCoordinates().y * displayFactor));
             else
-                pApplet.image(Game.getImageMap().get("unknownRoom"), (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
+                pApplet.image(Game.getImageMap().get("unknownRoom"), (entry.getValue().getMapCoordinates().x * displayFactor), displayFactor + (entry.getValue().getMapCoordinates().y * displayFactor));
 
-            if(characterPosi.x == entry.getValue().mapCoordinates.x && characterPosi.y == entry.getValue().mapCoordinates.y) {
+            if(characterPosi.x == entry.getValue().getMapCoordinates().x && characterPosi.y == entry.getValue().getMapCoordinates().y) {
 
 
-                pApplet.image(entry.getValue().img, (entry.getValue().mapCoordinates.x * displayFactor), displayFactor + (entry.getValue().mapCoordinates.y * displayFactor));
+                pApplet.image(entry.getValue().getImg(), (entry.getValue().getMapCoordinates().x * displayFactor), displayFactor + (entry.getValue().getMapCoordinates().y * displayFactor));
                 pApplet.fill(255,30,55,150);
                 pApplet.rect( (characterPosi.x * displayFactor), displayFactor + (characterPosi.y * displayFactor) ,displayFactor,displayFactor);
 
