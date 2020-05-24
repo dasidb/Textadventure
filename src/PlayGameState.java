@@ -78,7 +78,10 @@ public class PlayGameState extends GameState {
 
     if(character.getPosition().x == 4 && character.getPosition().y == 4){
     checkForDogWakeup();
+    }else {
+        applyArrayLenghtToInventory();
     }
+
 
 
     }
@@ -235,6 +238,7 @@ public class PlayGameState extends GameState {
     }
 
     public void checkForDogWakeup(){
+
         if(characterItemListLenght < character.getInventory().size()) {
             for(Enemy enemy : enemyArrayList){
                 if(enemy instanceof SleepingDog){
@@ -246,9 +250,15 @@ public class PlayGameState extends GameState {
             }
         }
         characterItemListLenght = character.getInventory().size();
-
-
     }
+
+    // Workaround cause every room could trigger the dog when entering the room
+    public void applyArrayLenghtToInventory(){
+
+            characterItemListLenght = character.getInventory().size();
+    }
+
+
 
 
 

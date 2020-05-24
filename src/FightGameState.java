@@ -8,10 +8,13 @@ public class FightGameState extends GameState {
     private int choice = 0;
     private boolean gameLost = false;
     int closeGameTimer = 0;
+    long currentTime;
+    boolean isEntryMessage;
 
     public FightGameState(PApplet pApplet, GameManager gameManager, String fightMessage) {
         super(pApplet, gameManager);
         this.fightMessage = fightMessage;
+        currentTime = System.currentTimeMillis();
     }
 
     public boolean isGameLost() {
@@ -23,15 +26,21 @@ public class FightGameState extends GameState {
     }
 
     public void entryFightMessage(){
-        pApplet.text(fightMessage , 200, 200);
+        pApplet.text(fightMessage , 50, 200, 600,600);
+        isEntryMessage = true;
     }
 
     @Override
     protected void doRender() {
-        if(!gameLost){
-            drawChoices();
+        if((System.currentTimeMillis()/1000) - (currentTime/1000) > 9) {
+            isEntryMessage = false;
+            if (!gameLost) {
+                drawChoices();
+            } else {
+                failedToEscapeMessage();
+            }
         }else{
-            failedToEscapeMessage();
+            entryFightMessage();
         }
 
     }
@@ -75,7 +84,7 @@ public class FightGameState extends GameState {
             if (pApplet.keyCode == pApplet.DOWN && choice < 2)
                 choice++;
 
-            if (pApplet.key == pApplet.ENTER) {
+            if (pApplet.key == pApplet.ENTER && !isEntryMessage) {
                 if (choice == 0) {
                     if (Math.round(Math.random() * 10) > 0) {
                         sucessfullEscaped();
@@ -84,15 +93,16 @@ public class FightGameState extends GameState {
                     }
                 }
                 if (choice == 1) {
-                    if (Math.round(Math.random() * 10) > 6){
+                    if (Math.round(Math.random() * 10) > 6) {
                         sucessfullEscaped();
-                    }else{
+                    } else {
                         failedToEscapeMessage();
+                    }
                 }
                     if (choice == 2) {
                         failedToEscapeMessage();
                     }
-                }
+
             }
         }
     }
@@ -100,8 +110,8 @@ public class FightGameState extends GameState {
         public void sucessfullEscaped(){
             getProcessing().clear();
             for(int i = 0 ; i < 500;i++){
-                getProcessing().textSize(36);
-                getProcessing().text("Du konntest entkommen",400,200);
+                getProcessing().textSize(16);
+               // getProcessing().text("Du konntest entkommen",400,200);
             }
             getProcessing().textSize(16);
             gameManager.setCurrentGameState(new EndGameState(getProcessing(),gameManager,"Du konntest entkommen"));
