@@ -1,6 +1,7 @@
 import processing.core.PVector;
 
-public class Enemy {
+// Basic class for enemys is abstract
+public abstract class Enemy {
     private PVector positíon;
     private String name;
     private boolean isSleeping = true;

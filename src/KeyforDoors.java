@@ -1,3 +1,5 @@
+// Not implemented maybe for future use
+
 public class KeyforDoors {
     private int keyID;
 

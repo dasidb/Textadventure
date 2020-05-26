@@ -1,6 +1,6 @@
 import processing.core.PApplet;
 import processing.event.KeyEvent;
-
+// Displays the game menu (Start/ Quit)
 public class MenuGameState extends GameState {
 
     private int selection = 0;
@@ -10,6 +10,7 @@ public class MenuGameState extends GameState {
         super(pApplet, manager);
     }
 
+    // Render Method renders the stuff on the screen
     @Override
     protected void doRender() {
         createMenu();
@@ -17,16 +18,20 @@ public class MenuGameState extends GameState {
             thereIsNoQuit();
     }
 
+    // Update method updates game logic
     @Override
     protected void doUpdate(long tpf) {
 
     }
 
+    // last thing to get called in the constructor
     @Override
     public void init() {
         super.init();
     }
 
+
+    // Creates the menu fills it with different color depending on the selection
     public void createMenu() {
         if (selection == 0)
             pApplet.fill(255, 255, 255);
@@ -45,6 +50,7 @@ public class MenuGameState extends GameState {
         pApplet.text("Quit", 400, 350);
     }
 
+    // Used to change the selection either start or quit
     @Override
     public void keyPressed(KeyEvent event) {
         super.keyPressed(event);
@@ -57,7 +63,7 @@ public class MenuGameState extends GameState {
             if (pApplet.key == pApplet.ENTER) {
                 System.out.println(selection);
                 if (selection == 0) {
-                    changeToPlayState();
+                    changeToPlayGameState();
                 }
                 if (selection == 1) {
                     thereIsNoQuit = true;
@@ -67,7 +73,7 @@ public class MenuGameState extends GameState {
         }
     }
 
-
+    // I had to much time to do stupid stuff...
     public void thereIsNoQuit() {
         for (int i = 0; i < 50; i++) {
             if(i % 10 == 1) {
@@ -77,7 +83,9 @@ public class MenuGameState extends GameState {
             }
         }
     }
-        public void changeToPlayState () {
+
+    // Changes explicit to the playgamestate
+        public void changeToPlayGameState() {
             if (gameManager.getGameStateMap().containsKey("playGameState")) {
                 gameManager.setCurrentGameState(gameManager.getGameStateMap().get("playGameState"));
             } else {

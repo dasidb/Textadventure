@@ -34,7 +34,7 @@ public class GameMap {
     }
 
 
-
+    // Nice piece of Zombie Code, still here for showing a bad example (NEVER DO THAT)
   /*  public void createManualGameMap(){
         PVector tmpVec = new PVector(0,0);
     // 0 ROW
@@ -134,7 +134,9 @@ public class GameMap {
 
 
     } */
-
+    // Creates the gamemap this is a manual action cause i dont want to look for an algorithm to create one automatically
+    // An idea of that was to give different rooms values (similar rooms have the same value) so next to a 1 (Floor) has
+    // to be a 2 which could be a living room/ dinning room etc but that was just a short idea back these days
   public void createManualGameMap1(){
       PVector tmpvec;
 
@@ -169,11 +171,12 @@ public class GameMap {
       worldMap.put(tmpvec,new MoneyRoom(tmpvec,"Arbeitszimmer",false,false,false,true, itemManager.addItemsToRoomList(7)));
   }
 
+  // Render Method for the map
     public void render(PVector characterPosi){
         drawGameMap(characterPosi);
 
     }
-//test
+    // Draws the map is just for the "admin" state
     public void drawGameMap(PVector characterPosi){
       int displayFactor = 100;
         for(Map.Entry<PVector,Room> entry : worldMap.entrySet()){

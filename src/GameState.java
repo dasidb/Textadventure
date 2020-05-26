@@ -4,7 +4,8 @@ import processing.core.PApplet;
 import processing.event.KeyEvent;
 import processing.event.MouseEvent;
 
-// Shows if the game is in "game" mode or "intro, sequence" mode
+// abstract class delivers some methods for the different gamestates. Also implements some abstract methods which
+// the other gamestates have to implement
 public abstract class GameState {
     protected GameManager gameManager;
     protected PApplet pApplet;
@@ -21,17 +22,18 @@ public abstract class GameState {
 
         init();
     }
+    // Gets called as the last statement in the constructor
     public void init(){
 
     }
-
+    // Render Method of the gamestate
     public void render(){
         doRender();
     }
-
+    // doRender Method of the gamestate has to be implemented by the other gamestates
     protected abstract void doRender();
 
-
+    // Update Method for updating the gamelogic
     public void update() {
         final long currentTime = System.currentTimeMillis();
         tpf = currentTime - lastFrameTime;
@@ -39,20 +41,23 @@ public abstract class GameState {
 
         doUpdate(tpf);
     }
+    // doUpdate Method of the gamestate has to be implemented by the other gamestates
     protected abstract void doUpdate(long tpf);
 
+    // Mouse pressed for mouse actions not used
     public void mousePressed(MouseEvent event) {
 
     }
 
+    // key press method for the different gamestates
     public void keyPressed(KeyEvent event){
 
     }
-
+    // key released method for the different gamestates
     public void keyReleased(KeyEvent event){
 
     }
-
+    // delivers papplet for the different gamestates to call the processing methods
     public PApplet getProcessing() {
         return pApplet;
     }

@@ -2,11 +2,10 @@ import processing.core.PApplet;
 import processing.core.PVector;
 import processing.event.KeyEvent;
 
-import javax.security.sasl.SaslServer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
+// When the character escapes he can upgrade his inventory size
 public class UpgradeMenuGameState extends GameState {
 
     private Character character;
@@ -26,11 +25,13 @@ public class UpgradeMenuGameState extends GameState {
 
         init();
     }
+
+    // Renders stuff
     @Override
     protected void doRender() {
         pApplet.clear();
     displayMoney();
-    displayUpgrades();
+    displayChoices();
         if(upgradeMsg != "") {
             pApplet.text(upgradeMsg, 50, 50, 500, 800);
         }
@@ -39,7 +40,7 @@ public class UpgradeMenuGameState extends GameState {
         System.out.println(character.getTimesWeightUpgraded());
     }
 
-
+    // Updates the gamelogic
     @Override
     protected void doUpdate(long tpf) {
 
@@ -61,12 +62,14 @@ public class UpgradeMenuGameState extends GameState {
 
     }
 
+    // Display the money ammount
     public void displayMoney(){
         pApplet.text("Current Money: " + character.getMoney(),30,30);
 
     }
 
-    public void displayUpgrades(){
+    // Display the different choices
+    public void displayChoices(){
 
         if(choice == 0){
             pApplet.fill(255,0,0);
@@ -92,6 +95,7 @@ public class UpgradeMenuGameState extends GameState {
 
     }
 
+    // different action depending on key pressed
     public void keyPressed(KeyEvent event) {
 
         super.keyPressed(event);
@@ -131,18 +135,28 @@ public class UpgradeMenuGameState extends GameState {
         }
     }
 
+    // legacy used for increasing the upgrade cost wasnt be able to used anymore after a player could start a new rob
     public int increaseUpgradeCost(int upgradeableValue){
         return upgradeableValue *= 1.5;
     }
 
+    // displays the message that you dont have enough money for an upgrade
     public void notEnoughMoney(){
         setUpgradeMsg("Du hast nicht genug Geld");
         test = System.currentTimeMillis();
     }
+
+    // displays when you successfully upgraded something
     public void successfullUpgrade(){
         setUpgradeMsg("Upgrade erfolgreich!");
         test = System.currentTimeMillis();
     }
+
+    // here a new game gets started .. bunch of mess in this method needs to get refractored should try to do TDD here
+    //the method is so fucked up cause it wasnt planned and got implemented lately.
+    // what happens here is the room count gets set to 0 so a new map can get created. some character variables get saved
+    // we create a new story gamestate so storys get displayed again
+    // the character gets a new inventory gets his money back and his upgrade counts
     public void startNewGame(){
         Room.setRoomCount(0);
         MoneyRoom.setRoomCount(0);
@@ -165,6 +179,8 @@ public class UpgradeMenuGameState extends GameState {
         ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setTimesWeightUpgraded(timesWeightUpgrade);
         ((PlayGameState) gameManager.getCurrentGameState()).getCharacter().setMoney(tmpMoney);
     }
+
+    // Displays the controlls
     public void keyInstructions(){
         pApplet.fill(255,255,255);
         pApplet.text("To select, use the arrow keys  \n " +

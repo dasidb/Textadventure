@@ -1,3 +1,4 @@
+// Game items, nothing special here
 public class Item {
 
     private String name;

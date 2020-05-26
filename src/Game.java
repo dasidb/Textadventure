@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+// Main class implements the PApplet lib
+// https://processing.org/
 public class Game extends PApplet {
 
     private GameMap gameMap;
@@ -17,7 +19,7 @@ public class Game extends PApplet {
     private int canPress = 0;
     private int canPress1;
     private GameManager gameManager;
-    private static boolean admin = true;
+    private static boolean admin = false;
 
     public static void main(String[] args) {
     PApplet.main(Game.class, args);
@@ -26,6 +28,8 @@ public class Game extends PApplet {
     public static Map<String,PImage> getImageMap(){
         return imageMap;
     }
+
+    // Settings Method from papplet used to create the window only place where you can call the size method
     @Override
     public void settings(){
     super.settings();
@@ -33,15 +37,20 @@ public class Game extends PApplet {
     size(800,800);
 
     }
-
+    // Used for testing
     public static boolean isAdmin() {
         return admin;
+    }
+
+    public static void toogleAdmin(){
+        admin = !admin;
     }
 
     public static void setAdmin(boolean admin) {
         Game.admin = admin;
     }
-
+    // Setup method from papplet used to create different objects (this is the place where you have to load the images) they
+    //are not allowed inside of the draw loop
     @Override
     public void setup() {
         super.setup();
@@ -57,6 +66,7 @@ public class Game extends PApplet {
         loop();
     }
 
+    // Draw Method from papplet this is where the magic happens and things are actually drawn to the screen
     @Override
     public void draw(){
         gameManager.update();
@@ -67,6 +77,8 @@ public class Game extends PApplet {
     //checkCharactertoRoom();
     }
 
+    // Fills the images for displaying the rooms (legacy cause its only used for the admin mode to have a map, thats
+    // why the images are wrong
     public void fillImageMap(){
         imageMap = new HashMap<>();
          img = new PImage();
@@ -76,6 +88,8 @@ public class Game extends PApplet {
         imageMap.put("unknownRoom",img);
     }
 
+    // KeyPressed method from papplet calls the gamemanager keypressed method so the current gamestate can change the
+    //behaviour depending on the state
     @Override
     public void keyPressed(KeyEvent event) {
         gameManager.keyPressed(event);
@@ -83,6 +97,9 @@ public class Game extends PApplet {
 
 
     }
+
+    // KeyRelease method from papplet calls the gamemanager keypressed method so the current gamestate can change the
+    //behaviour depending on the state
     @Override
     public void keyReleased(KeyEvent event) {
         gameManager.keyReleased(event);

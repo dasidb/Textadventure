@@ -96,7 +96,7 @@ public class Story {
             inputStream.close();
         }
     }
-
+    // Renders the story
     public void render(PApplet pApplet){
 
         //pApplet.clear();

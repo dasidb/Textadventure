@@ -1,2 +1,3 @@
-public class Floor {
+// Not used
+ class Floor {
 }

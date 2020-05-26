@@ -1,6 +1,7 @@
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 
+// Is used when the Character enters a "combat" happens when an enemy woke up
 public class FightGameState extends GameState {
     private String fightMessage = "";
     // use it after refractor of choosemenu
@@ -24,12 +25,13 @@ public class FightGameState extends GameState {
     public void setGameLost(boolean gameLost) {
         this.gameLost = gameLost;
     }
-
+    // Message that get displayed at first (Depends on the enemy type)
     public void entryFightMessage(){
         pApplet.text(fightMessage , 50, 200, 600,600);
         isEntryMessage = true;
     }
 
+    //Renders things to the screen
     @Override
     protected void doRender() {
         if((System.currentTimeMillis()/1000) - (currentTime/1000) > 9) {
@@ -49,7 +51,7 @@ public class FightGameState extends GameState {
     protected void doUpdate(long tpf) {
 
     }
-
+    // Draws different choices (bad design should create a class for that, cause its used on multiply spots)
     public void drawChoices() {
         pApplet.clear();
         pApplet.fill(255,255,255);
@@ -74,6 +76,7 @@ public class FightGameState extends GameState {
         getProcessing().text("Greife an", 600,80);
     }
 
+    //takes action depending on keypresses
     @Override
     public void keyPressed(KeyEvent event) {
 
@@ -107,6 +110,7 @@ public class FightGameState extends GameState {
         }
     }
 
+    //happens if the character could escape
         public void sucessfullEscaped(){
             getProcessing().clear();
             for(int i = 0 ; i < 500;i++){
@@ -114,11 +118,13 @@ public class FightGameState extends GameState {
                // getProcessing().text("Du konntest entkommen",400,200);
             }
             getProcessing().textSize(16);
-            gameManager.setCurrentGameState(new EndGameState(getProcessing(),gameManager,"Du konntest entkommen"));
+            gameManager.setCurrentGameState(new EndGameState(getProcessing(),gameManager,"Du konntest entkommen, hast bei dem " +
+                    "Fluchtversuch jedoch deine Beute verloren."));
 
 
         }
 
+        //happens when the character couldnt escape leads to a game quit
         public void failedToEscapeMessage(){
             gameLost = true;
             getProcessing().clear();
@@ -129,7 +135,7 @@ public class FightGameState extends GameState {
             if(closeGameTimer < 600){
                 getProcessing().text("Dein Fluchtversuch ist missglückt.",200,200);
                 getProcessing().text("GAMEOVER",400,350);
-                getProcessing().text("Das spiel wird sich in kürze beenden" + Math.round((600 - closeGameTimer)/30) , 50, 400 );
+                getProcessing().text("Das spiel wird sich in " + Math.round((600 - closeGameTimer)/30) + " Sekunden beenden." , 50, 400 );
                 closeGameTimer++;
             }else {
                 System.exit(0);

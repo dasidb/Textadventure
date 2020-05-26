@@ -3,7 +3,8 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 import java.util.List;
-
+// abstract class for the rooms (could be the real class but i wasnt sure if i implement different room types later)
+// need to refractor this class. A lot of unused stuff here
 public abstract class Room {
     private PVector mapCoordinates;
     private String roomName;

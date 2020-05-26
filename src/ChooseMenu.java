@@ -54,11 +54,13 @@ public class ChooseMenu {
         this.inputValue = inputValue;
     }
 
-
+    // Render Method for The Choices displays stuff on screen
     public void render(){
         drawChoices();
     }
-// needs a refactor maybe deliver it an array of choices with position to display the stuff
+
+    //Creates the Choices to draw
+// needs a refactor maybe deliver it an array of choices with position to display the stuff super bad design
     public void drawChoices(){
         pApplet.textSize(16);
 
@@ -91,7 +93,8 @@ public class ChooseMenu {
 
 
     }
-
+    // actually react to the choice which the players write takes action seems like thats also very bad design
+    // Method is way to long and  violate the SRP principle
     public String chooseOption(String choiceSelected){
         System.out.println(character.getInventory());
         System.out.println(character.getWeight());
@@ -242,7 +245,12 @@ public class ChooseMenu {
                     character.getInventoryValue();
                     return "Du hast Sachen im wert von " + character.calculateInventoryValue() + "€ erbeutet.";
                 }
+
+            case "devmode" :
+                Game.toogleAdmin();
         }
+
+
     return "";
     }
 }

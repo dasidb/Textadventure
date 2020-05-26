@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 public class Character {
+
+    // Class variables
     private PVector position;
     private String name;
     private Set<KeyforDoors> keyList = new HashSet<>();
@@ -14,6 +16,7 @@ public class Character {
     private int maxWeight = 35;
     private int timesWeightUpgraded = 0;
     private int money = 0;
+
 
     public int getTimesWeightUpgraded() {
         return timesWeightUpgraded;
@@ -73,7 +76,7 @@ public class Character {
         tmpVec.y = tmpVec.y + vector.y;
         setPosition(tmpVec);
     }
-
+    //Itteraes trough inventory to get the item weight
     public int calculateWeight(){
         int tmpWeight = 0;
         for(Item item : inventory){
@@ -81,7 +84,7 @@ public class Character {
         }
         return tmpWeight;
     }
-
+    // Itteraes trough inventory to get the item value
     public int calculateInventoryValue(){
         int tmpValue = 0;
         for(Item item : inventory){
@@ -98,7 +101,8 @@ public class Character {
         this.weight = weight;
     }
 
-    public int calculateValue(){
+    //Itteraes trough inventory to get the item value but adds the value to the current money
+    public int calculateValueWithCurrentMoney(){
         int tmpValue = getMoney();
         for(Item item : inventory){
             tmpValue += item.getValue();
@@ -108,7 +112,7 @@ public class Character {
     }
 
     public int getInventoryValue() {
-        return calculateValue();
+        return calculateValueWithCurrentMoney();
     }
 
     public int getMoney(){
@@ -119,6 +123,7 @@ public class Character {
         this.money = money;
     }
 
+    // Adds maxWeight until 50
     public boolean upgradeWeight(int valueOfUpgrade){
         if(maxWeight < 50) {
             maxWeight += valueOfUpgrade;

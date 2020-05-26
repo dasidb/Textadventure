@@ -1,5 +1,5 @@
 import java.util.*;
-
+// Holds a list of all items xx1 - xx 3 Specific room items 4 - 9 Global items
 public class ItemManager {
     private Map<Integer, Item> itemMap;
     private Set<Integer> itemSet;
@@ -9,6 +9,7 @@ public class ItemManager {
         createItemMap();
     }
 
+    // Creates a map of all items
     public void createItemMap(){
         itemMap.put(4,new Item(" 100€",100,0));
         itemMap.put(5,new Item(" 200€",200,0));
@@ -49,6 +50,7 @@ public class ItemManager {
 
     }
 
+    // Fiils the item list of the rooms in a random way
     public Set<Integer> fillRoomList(int roomID) {
         int realchoice;
         int tmpIncremnt = 3;
@@ -70,7 +72,7 @@ public class ItemManager {
             }
         }
 
-        // Work around da er manchmal nur 2 added...
+        // Work around cause sometimes just 2 items are added
         if(itemSet.size() <3) {
             if (!itemSet.contains(9)) {
                 itemSet.add(9);
@@ -91,6 +93,7 @@ public class ItemManager {
         return itemSet;
     }
 
+    // Does what the name says
     public List<Item> addItemsToRoomList(int roomID){
         Set<Integer> numbers = fillRoomList(roomID);
         List<Item> roomItemList = new ArrayList<>();

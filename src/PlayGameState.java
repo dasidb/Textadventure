@@ -7,7 +7,7 @@ import processing.event.MouseEvent;
 
 import java.util.ArrayList;
 
-
+// Gamestate when you normaly play the game
 public class PlayGameState extends GameState {
 
     // Variable
@@ -42,6 +42,7 @@ public class PlayGameState extends GameState {
         this.gameMap = gameMap;
     }
 
+    // Last thing that get called in the constructor is used here to create some game objects
     @Override
     public void init() {
         super.init();
@@ -56,7 +57,9 @@ public class PlayGameState extends GameState {
 
 
     }
-
+    // adds enemys to the enemy arraylist just in the moment i wrote this i realise that its dumb what i did here
+    // i should get out the check for wakeup here and should use propper constructor for the enemys to bound them to a
+    // specific position on the map ... fckn bad design
     public void addEnemys(){
         Enemy enemy = new SleepingPersonEnemy();
         Enemy enemy2 = new SleepingDog();
@@ -65,7 +68,7 @@ public class PlayGameState extends GameState {
         enemyArrayList.add(enemy2);
 
     }
-
+    // Update of the gamelogic
     @Override
     protected void doUpdate(long tpf) {
     pApplet.clear();
@@ -85,7 +88,7 @@ public class PlayGameState extends GameState {
 
 
     }
-
+    // Renders stuff on the screen
     @Override
     protected void doRender() {
         // renders the objects displays text etc
@@ -105,20 +108,20 @@ public class PlayGameState extends GameState {
 
 
     }
-
+    // Mouse pressed method, not used
     @Override
     public void mousePressed(MouseEvent event) {
         super.mousePressed(event);
 
     }
-
+    // gets triggered when a key is released
     @Override
     public void keyReleased(KeyEvent event) {
         super.keyReleased(event);
         keyInputs(event.getKey(), event.getKeyCode(), true);
 
     }
-
+    // Gets triggered when a key is pressed
     @Override
     public void keyPressed(KeyEvent event) {
         super.keyPressed(event);
@@ -126,6 +129,7 @@ public class PlayGameState extends GameState {
 
     }
 
+    // reads the key inputs and take action depending on what key got pressed
     public void keyInputs(char key, int keyCode, boolean keyPressed){
         System.out.println(chooseMenu.getInputValue() + "input");
         if(keyPressed){
@@ -169,7 +173,7 @@ public class PlayGameState extends GameState {
 
         }
     }
-
+    // Draws the | to make clear that you can write there
     public void drawLineCursor(){
         //hier
         if(chooseMenu.getInputValue().equals("") || chooseMenu.getInputValue().equals("|")) {
@@ -187,7 +191,7 @@ public class PlayGameState extends GameState {
         pApplet.text(chooseResult, 50,50, 550,600);
     }
 
-
+    // checks if there is a new story and displys it
     public void checkForNewStory(){
 
         if(gameMap.getWorldMap().get(character.getPosition()).isHasNewStory()){
@@ -209,6 +213,7 @@ public class PlayGameState extends GameState {
         }
     }
 
+    // Displays the current room name
     public void displayCurrentRoomName(){
         if(character.getPosition().x == 3 && character.getPosition().y == 5) {
             pApplet.text("Du befindest dich aktuell in der " + gameMap.getWorldMap().get(character.getPosition()).getRoomName(), 600,300,200,100);
@@ -217,10 +222,12 @@ public class PlayGameState extends GameState {
         pApplet.text("Du befindest dich aktuell im " + gameMap.getWorldMap().get(character.getPosition()).getRoomName(), 600,300,200,100);
     }
 
+    // Displays the current weight
     public void displayCurrentWeight(){
         pApplet.text("Du hast aktuell ein Gewicht von " + character.getWeight() + " Kilo dabei.",600,600,200,200);
     }
 
+    // Checks if a Person (Enemy) wakesup if the Character has " ein Kuscheltier" in the inventory it gets triggered
     public boolean checkForPersonWakeup(){
         for(Enemy enemy : enemyArrayList) {
             if(enemy instanceof SleepingPersonEnemy) {
@@ -237,6 +244,8 @@ public class PlayGameState extends GameState {
 
     }
 
+    // Checks if the Dog wakesup this happens if youre in the same room as the dog and steal items ( There is a 20 %)
+    // chance that happens
     public void checkForDogWakeup(){
 
         if(characterItemListLenght < character.getInventory().size()) {
