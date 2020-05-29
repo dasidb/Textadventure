@@ -96,8 +96,7 @@ public class ChooseMenu {
     // actually react to the choice which the players write takes action seems like thats also very bad design
     // Method is way to long and  violate the SRP principle
     public String chooseOption(String choiceSelected){
-        System.out.println(character.getInventory());
-        System.out.println(character.getWeight());
+
         String userchoice = choiceSelected.toLowerCase();
         userchoice = userchoice.replace("\n", "");
         PVector tmpVec = new PVector();
@@ -115,7 +114,7 @@ public class ChooseMenu {
                 setWantToTake(false);
                 tmpVec.x = 0;
                 tmpVec.y = 1;
-                System.out.println(character.getPosition());
+
                 if(!gameMap.getWorldMap().get(character.getPosition()).isExitSouth())
                     return "Du kannst nicht nach Süden gehen";
                 character.moveCharacter(tmpVec);

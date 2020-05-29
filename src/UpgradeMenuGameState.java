@@ -37,7 +37,7 @@ public class UpgradeMenuGameState extends GameState {
         }
 
         keyInstructions();
-        System.out.println(character.getTimesWeightUpgraded());
+
     }
 
     // Updates the gamelogic
@@ -106,7 +106,7 @@ public class UpgradeMenuGameState extends GameState {
                 choice++;
 
             if (pApplet.key == pApplet.ENTER) {
-                System.out.println(choice);
+
                 if (choice == 0 ) {
                     if(character.getMoney() >= weightUpgradeCost + (character.getTimesWeightUpgraded()*250)) {
                         successfullUpgrade = character.upgradeWeight(5);
@@ -162,7 +162,7 @@ public class UpgradeMenuGameState extends GameState {
         MoneyRoom.setRoomCount(0);
         timesWeightUpgrade = character.getTimesWeightUpgraded();
         int tmpMoney = character.getMoney();
-        System.out.println(tmpMoney + " das ist tmpmoney");
+
 
         gameManager.getGameStateMap().put("storyGameState",new StoryGameState(getProcessing(),gameManager));
         Room.setRoomCount(0);

@@ -51,7 +51,7 @@ public class PlayGameState extends GameState {
         character = new Character(new PVector(1,4));
         chooseMenu = new ChooseMenu(getProcessing(),character,gameMap);
         //story = new Story();
-        System.out.println(character + " playgame");
+
         addEnemys();
 
 
@@ -96,6 +96,7 @@ public class PlayGameState extends GameState {
         gameMap.render(character.getPosition());
 
 
+
         chooseMenu.render();
         checkForNewStory();
         drawCannotMove();
@@ -131,7 +132,7 @@ public class PlayGameState extends GameState {
 
     // reads the key inputs and take action depending on what key got pressed
     public void keyInputs(char key, int keyCode, boolean keyPressed){
-        System.out.println(chooseMenu.getInputValue() + "input");
+
         if(keyPressed){
 
             if(keyCode !=  PApplet.SHIFT || key != PApplet.BACKSPACE) {
@@ -146,7 +147,7 @@ public class PlayGameState extends GameState {
 
                     chooseMenu.setInputValue(chooseMenu.getInputValue().substring(0,chooseMenu.getInputValue().length() - 2));
                     chooseMenu.setInputValue(chooseMenu.getInputValue().trim());
-                   System.out.println("|" + chooseMenu.getInputValue() + "|");
+
 
 
 

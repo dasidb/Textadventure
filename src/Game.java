@@ -9,6 +9,7 @@ import java.util.Map;
 
 // Main class implements the PApplet lib
 // https://processing.org/
+// Dont forget to add the core.jar data, otherwhise the programm wont start.
 public class Game extends PApplet {
 
     private GameMap gameMap;
@@ -19,7 +20,7 @@ public class Game extends PApplet {
     private int canPress = 0;
     private int canPress1;
     private GameManager gameManager;
-    private static boolean admin = false;
+    private static boolean admin = false; // type devmode
 
     public static void main(String[] args) {
     PApplet.main(Game.class, args);

@@ -61,7 +61,7 @@ public class MenuGameState extends GameState {
                 selection++;
 
             if (pApplet.key == pApplet.ENTER) {
-                System.out.println(selection);
+
                 if (selection == 0) {
                     changeToPlayGameState();
                 }
